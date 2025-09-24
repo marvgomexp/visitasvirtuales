@@ -6,7 +6,7 @@
 ## 📋 Índice
 - [Características](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#caracter%C3%ADsticas-clave)
 - [Herramientas](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#herramientas)
-- [Desarrolladores](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#desarrolladores)
+- [Desarrolladores](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#equipo-de-desarrollo)
 
 
 ## 🎯 Características clave
@@ -19,9 +19,9 @@ Estas son las principales prestaciones de la plataforma:
 
 ## 🛠️ Herramientas
 Tecnologías usadas en el proyecto:
+(introducir aquí)
 
-
-## 👨‍💻 Desarrolladores
+## 👥 Equipo de desarrollo
 
 - Eugenio Rodríguez
 - Javier Vaquero
