@@ -4,7 +4,7 @@
 
     
 ## Índice
-- [Características](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#caracter%C3%ADsticas]
+- [Características](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#caracter%C3%ADsticas)
 - [Herramientas](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#herramientas)
 - [Desarrolladores](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#desarrolladores)
 
