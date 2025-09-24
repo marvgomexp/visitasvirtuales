@@ -22,3 +22,8 @@ Tecnologías usadas en el proyecto:
 
 
 ## Desarrolladores
+
+- Eugenio Rodríguez
+- Javier Vaquero
+- José Luis Ruiz
+- María Gómez
