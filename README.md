@@ -4,9 +4,9 @@
 
     
 ## 📋 Índice
-- [Características](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#caracter%C3%ADsticas-clave)
-- [Herramientas](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#herramientas)
-- [Desarrolladores](https://github.com/marvgomexp/visitasvirtuales/edit/main/README.md#equipo-de-desarrollo)
+- [Características](https://github.com/marvgomexp/visitasvirtuales/blob/main/README.md#-caracter%C3%ADsticas-clave)
+- [Herramientas](https://github.com/marvgomexp/visitasvirtuales/blob/main/README.md#herramientas)
+- [Desarrolladores](https://github.com/marvgomexp/visitasvirtuales/blob/main/README.md#equipo-de-desarrollo)
 
 
 ## 🎯 Características clave
