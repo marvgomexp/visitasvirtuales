@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Soporte WebGL</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body onload="start()">
+
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module">
+    </script>
+    <div id="logo-cargando">
+        <dotlottie-wc 
+            src="https://lottie.host/ce504203-79c2-4966-9d3b-f18fb66eed2a/FLphjLsgql.lottie" 
+            autoplay
+            loop>
+        </dotlottie-wc>
+    </div>
+    <script src="loading.js"></script>
+    <canvas id="glcanvas" width="640" height="480">
+        El navegador no soporta WebGL. Haga click <a href="Unity">aquí</a> para redireccionar
+    </canvas>
+</body>
+
+
+</html>
