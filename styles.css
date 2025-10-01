@@ -434,6 +434,7 @@ button, input, select, textarea{
         position:fixed;
         top: 0;
         right: -220px;
+        justify-content: center;
         background: #003594;
         width: 220px;
         height: 100vh;
