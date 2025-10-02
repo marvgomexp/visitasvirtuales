@@ -1,42 +1,41 @@
+function start() {
+    const loading = document.getElementById('logo-cargando');
 
-   // Pantalla de prueba
+    setTimeout(() => {
+        loading.style.display = 'none';
+    }, 3000);
 
-    function start() {
-        let loading = document.getElementById('logo-cargando');
+    const canvas = document.getElementById("glcanvas");
+    const noWebGLMsg = document.getElementById('no-webgl-message');
 
-        setTimeout(() => {
-            loading.style.display ='none';
-        },3000)
+    const gl = initWebGL(canvas);
 
-        let canvas = document.getElementById("glcanvas");
-        const gl = initWebGL(canvas);
-
-        if (!gl) return;
-
-        // Ajustar el viewport al tamaño del canvas
-        gl.viewport(0, 0, canvas.width, canvas.height);
-
-        // Establecer el color de limpieza: negro opaco
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.clear(gl.COLOR_BUFFER_BIT); // Limpiar pantalla
-
+    if (!gl) {
+        // Mostrar mensaje y ocultar canvas
+        noWebGLMsg.style.display = 'block';
+        canvas.style.display = 'none';
+        return;
     }
 
-   
-   function initWebGL(canvas) {
-        var gl = null;
+    // Si hay WebGL, mostrar canvas y ocultar mensaje
+    canvas.style.display = 'block';
+    noWebGLMsg.style.display = 'none';
 
-        try {
-            gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-        } catch (e) { }
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+}
 
-        // Aviso si no hay contexto GL
-        if (!gl) {
-            alert("No soportado por el navegador. Haz click aquí para redireccionar");
-            gl = null;
-        }
+function initWebGL(canvas) {
+    let gl = null;
 
-        return gl;
+    try {
+        gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    } catch (e) { }
+
+    if (!gl) {
+        return null;
     }
 
-    
+    return gl;
+}
