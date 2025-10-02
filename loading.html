@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Soporte WebGL</title>
-    <link rel="stylesheet" href="loading.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
 </head>
 
 <body onload="start()">
@@ -12,17 +23,17 @@
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
 
     <div id="logo-cargando">
-        <dotlottie-wc 
-            src="https://lottie.host/ce504203-79c2-4966-9d3b-f18fb66eed2a/FLphjLsgql.lottie" 
-            autoplay
-            loop>
+        <dotlottie-wc src="https://lottie.host/ce504203-79c2-4966-9d3b-f18fb66eed2a/FLphjLsgql.lottie" autoplay loop>
         </dotlottie-wc>
     </div>
 
     <canvas id="glcanvas" width="640" height="480" style="display:none;"></canvas>
 
-    <div id="no-webgl-message" style="display:none; margin-top: 20px;">
-        El navegador no soporta WebGL. Haga click <a href="https://get.webgl.org/" target="_blank" rel="noopener noreferrer">aquí</a> para redireccionar.
+    <div id="no-webgl-message" class="no-webgl-message">
+        El navegador no soporta WebGL. Haga click <a href="https://get.webgl.org/" target="_blank"
+            rel="noopener noreferrer">aquí</a> para redireccionar.
+        <img src="images/Davante_logotipo_navy.png" alt="Logo_DAVANTE_navy" class="logo-dav-loading">
+
     </div>
 
     <script src="loading.js"></script>
