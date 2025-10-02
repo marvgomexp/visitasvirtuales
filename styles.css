@@ -1,15 +1,14 @@
 /* Estilo general */
 
 *{
+    font-family: 'Manrope', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    background: #f2f6ff;
+    background: #ededed;
 }
 
 /* Barra superior */
@@ -43,6 +42,13 @@ header {
     line-height: 1;        
 }
 
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none; 
+  color: inherit;
+}
 
 .logo-img {
     max-width: 25px;
@@ -64,8 +70,15 @@ header {
 }
 
 .menu ul li {
+    display: flex;
+    align-items: center;
     list-style: none;
     margin-left: 20px;
+}
+
+.menu ul li a {
+  display: block;
+  line-height: normal;
 }
 
 nav {
@@ -75,27 +88,36 @@ nav {
 }
 
 nav a {
+    display: block;
     margin: 0 15px;
     text-decoration: none;
     color: #ececec;
 }
 
+.boton, 
+.boton2 {
+    font-family: 'Manrope';
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.2; 
+    box-sizing: border-box;
+}
 
 .boton {
     background-color: #fff;
     color: black;
-    padding: 10px 20px;
-    border-radius: 8px;
     border: 1px solid #5b5b5b;
-    text-decoration: none;
 }
 
 .boton2 {
     background-color: #000;
     color: white;
     padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
+    border: 1px solid #000
 }
 
 .botones-header {
@@ -103,14 +125,12 @@ nav a {
     gap: 15px; 
     align-items:center;
     margin-left: auto;
-
 }
 
 #selected {
     background:#00246d;
     padding: 18px 40px;
     border-radius: 50px;
-
 }
 
 .menu nav img {
@@ -162,7 +182,7 @@ nav a {
 }
 
 .dropdown-content button {
-  font-family: 'Montserrat';
+  font-family: 'Manrope';
   font-weight: 600;
   font-size: 14px;
 
@@ -186,7 +206,7 @@ nav a {
 }
 
 .dropdown-content button:hover {
-  background: #00246d; 
+  background: #FF5B41; 
 }
 
 .forget-pass {
@@ -212,11 +232,14 @@ nav a {
 
 .texto-intro {
     max-width: 500px;
+    font-weight: 400;
 }
 
 .texto-intro h1 {
     font-size: 60px;
+    font-weight: 800;
     margin-bottom: 20px;
+    line-height: 60px;
 }
 
 .azul {
@@ -248,7 +271,7 @@ nav a {
 }
 
  .tour:hover {
-  background: #00246d; 
+  background:#FF5B41;
 }
 
 .stats {
@@ -434,7 +457,10 @@ button, input, select, textarea{
         position:fixed;
         top: 0;
         right: -220px;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         background: #003594;
         width: 220px;
         height: 100vh;
@@ -495,4 +521,102 @@ button, input, select, textarea{
     .menu #movil_menu:hover {
         background: rgba(255,255,255,0.2);
     }
+
+    .logo #titulo {
+        display: none;
+    }
 }
+
+/* PÁGINA DE REGISTRO */
+
+        form{
+            background-color: none;
+            padding: 160px 40px;
+            width: 420px;
+            text-align: center;
+            border-radius: 8px;
+            margin: auto;
+        }
+
+        form h2{
+            font-size: 25px;
+            color: #444;
+            margin-bottom: 35px;
+
+        }
+        
+        .user-type {
+            margin-bottom: 40px;
+        }
+
+        .user-type button.activo {
+            background: #003594;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-weight: 400;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            border-style: none;
+        }
+
+        .user-type button {
+            background: #A0A0A0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-weight: 400;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            border-style: none;
+        }
+
+        form a{
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+            color: #A0A0A0;
+        }
+        form a:hover{
+            color:#444;
+        }
+        .input-container{
+            position: relative;
+        }
+        .input-container > input{
+            padding: 15px 12px 15px 12px;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: transparent;
+            border: 2px solid #CBCBCB;
+            font-size: 16px;
+            outline: none;
+            color: #000000;
+        }
+        ::placeholder{
+            color: #A0A0A0;
+            font-size: 16px;
+        }
+        .input-submit{
+            margin-left: 75px;
+            padding: 10px;
+            width: 50%;
+            margin-bottom: 20px;
+        }
+        .btn-submit{
+            background-color: #0234ab;
+            color: #ffffff;
+            border-radius: 35px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-style: none;
+        }
+        .btn-submit:hover{
+            cursor: pointer;
+            color: #F5F5F5;
+            background-color: #007BFF;
+        }
