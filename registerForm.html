@@ -27,7 +27,7 @@
             <nav id="nav">
             <img src="images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
             <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a href="/index.html">Inicio</a></li>
             <li><a href="#">Nuestros Centros</a></li>
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Contacto</a></li>
@@ -59,24 +59,105 @@
         <h2>Crear cuenta</h2>
             <!-- Selector de rol -->
     <div class="user-type">
-      <button class="activo" type="button">Estudiante</button>
-      <button type="button">Docente</button>
+      <button id="btnAlumno" class="activo" type="button">Estudiante</button>
+      <button id="btnDocente" type="button">Docente</button>
     </div>
         <div class="input-group">
-            <div class="input-container">
+            <div class="input-container col-1">
                 <input type="text" name="nombre" placeholder="Nombre completo" required>
             </div>
-            <div class="input-container">
+            <div class="input-container col-2">
                 <input type="text" name="correo" placeholder="Correo electrónico" required>
             </div>
-            <div class="input-container">
+            <div class="input-container col-1">
+                <select id="comunidad" required>
+                    <option value="">Comunidad autónoma</option>
+                    <option value="andalucia">Andalucía</option>
+                    <option value="aragon">Aragón</option>
+                    <option value="castilla-la-mancha">Castilla-La Mancha</option>
+                    <option value="cataluna">Cataluña</option>
+                    <option value="comunidad-de-madrid">Comunidad de Madrid</option>
+                    <option value="comunidad-valenciana">Comunidad Valenciana</option>
+                    <option value="principado-de-asturias">Principado de Asturias</option>
+                    <option value="region-de-murcia">Región de Murcia</option>
+                 
+                </select>
+            </div>
+
+            <!-- Formulario alumno -->
+            <div id="camposAlumno">
+            <div class="input-container col-2">
+                <select id="centro" required>
+                  <option value="">Centro de estudios</option>
+                  <option value="almeria">Almería</option>
+                  <option value="arena">Arena</option>
+                  <option value="cordoba">Córdoba</option>
+                  <option value="fatima">Fatima</option>
+                  <option value="el-ejido">El Ejido</option>
+                  <option value="almenara">Almenara</option>
+                </select>
+            </div>
+            <div class="input-container col-1">
+                <select id="grado" required>
+                  <option value="">Seleccionar grado</option>
+                  <option value="gm">Grado Medio</option>
+                  <option value="gs">Grado Superior</option>
+                </select>
+            </div>
+            <div class="input-container col-2">
+                <select id="titulacion" required>
+                  <option value="">Seleccionar titulación</option>
+                  <option value="aux-enf">Auxiliar de Enfermería</option>
+                  <option value="farmacia">Farmacia y Parafarmacia</option>
+                  <option value="emerg">Emergencias Sanitarias</option>
+                  <option value="teleco">Instalador de Telecomunicaciones</option>
+                  <option value="electric">Instalaciones Eléctricas y Automáticas</option>
+                  <option value="tapsd">Atención a Personas en Situación de Dependencia</option>
+                </select>
+            </div>
+            </div>
+            <!--Fin formulario alumno-->
+
+            <!-- Formulario docente -->
+             <div id="camposDocente" style="display: none;">
+                <div class="input-container col-1">
+                <select id="titulacion" required>
+                  <option value="">Titulaciones</option>
+                  <option value="aux-enf">Auxiliar de Enfermería</option>
+                  <option value="farmacia">Farmacia y Parafarmacia</option>
+                  <option value="emerg">Emergencias Sanitarias</option>
+                  <option value="teleco">Instalador de Telecomunicaciones</option>
+                  <option value="electric">Instalaciones Eléctricas y Automáticas</option>
+                  <option value="tapsd">Atención a Personas en Situación de Dependencia</option>
+                </select>
+            </div>
+
+            <div class="input-container col-2">
+                <select id="modulos" required>
+                  <option value="">Módulos que imparte</option>
+                  <option value="mod1">Módulo 1</option>
+                  <option value="mod2">Módulo 2</option>
+                  <option value="mod3">Módulo 3</option>
+                  <option value="mod4">Módulo 4</option>
+                  <option value="mod5">Módulo 5</option>
+                </select>
+            </div>
+             </div>
+            
+                <!--Fin formulario docente-->
+
+                <div class="input-container col-1">
                 <input type="text" name="contraseña" placeholder="Contraseña" required>
+            </div>
+            <div class="input-container col-1">
+                <input type="text" name="confirmar contraseña" placeholder="Confirmar contraseña" required>
             </div>
             <div class="input-submit">
                 <input type="submit" class="btn-submit" name="crear" value="Crear cuenta">
             </div>
-
+            <div class="terminos">
             <a href="#">Terminos y condiciones</a>
+        </div>
         </div>
     </form>
     </div>
@@ -138,5 +219,6 @@
         </div>
     </footer>
    <script src="/js/script.js"></script>
+   <script src="/js/register-form.js"></script>
 </body>
 </html>

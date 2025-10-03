@@ -326,6 +326,8 @@ nav a {
     flex-wrap: wrap;
 }
 
+/* PÁGINA VISITAS */
+
 #webgl-container {
   position: relative;
   width: 100%; 
@@ -532,7 +534,7 @@ button, input, select, textarea{
         form{
             background-color: none;
             padding: 160px 40px;
-            width: 420px;
+            width: 600px;
             text-align: center;
             border-radius: 8px;
             margin: auto;
@@ -582,9 +584,27 @@ button, input, select, textarea{
         form a:hover{
             color:#444;
         }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 30px;
+            width: 100%;
+        }
+
         .input-container{
             position: relative;
+            width: 100%;
         }
+
+        .input-container.col-1 {
+            grid-column: 1;
+        }
+
+        .input-container.col-2 {
+            grid-column: 2;
+        }
+
         .input-container > input{
             padding: 15px 12px 15px 12px;
             width: 100%;
@@ -596,16 +616,32 @@ button, input, select, textarea{
             outline: none;
             color: #000000;
         }
+
+        .input-container select {
+            padding: 15px 12px;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: transparent;
+            border: 2px solid #CBCBCB;
+            font-size: 16px;
+            outline: none;
+            color: #A0A0A0;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%23003594' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            cursor: pointer;
+        }
+
         ::placeholder{
             color: #A0A0A0;
             font-size: 16px;
         }
-        .input-submit{
-            margin-left: 75px;
-            padding: 10px;
-            width: 50%;
-            margin-bottom: 20px;
-        }
+
         .btn-submit{
             background-color: #0234ab;
             color: #ffffff;
@@ -615,8 +651,33 @@ button, input, select, textarea{
             text-decoration: none;
             border-style: none;
         }
+
         .btn-submit:hover{
             cursor: pointer;
             color: #F5F5F5;
-            background-color: #007BFF;
+            background-color: #FF5B41;
         }
+
+        .input-submit {
+            margin-top: 20px;
+        }
+
+        .input-submit,
+        .terminos {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Diseño responsive */
+
+        @media (max-width: 720px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .input-container.full {
+                grid-column: span 1;
+            }
+        }
+
