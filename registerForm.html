@@ -46,7 +46,7 @@
     </form>
   </div>
 </div>
-        <a href="/loginForm.html" class="boton">Registrarse</a>
+        <a href="/registerForm.html" class="boton">Registrarse</a>
         </div>
 </div>
     </header>
@@ -64,14 +64,14 @@
     </div>
         <div class="input-group">
             <div class="input-container col-1">
-                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="text" name="nombre" placeholder="Nombre completo *" required> 
             </div>
             <div class="input-container col-2">
-                <input type="text" name="correo" placeholder="Correo electrónico" required>
+                <input type="text" name="correo" placeholder="Correo electrónico *" required>
             </div>
             <div class="input-container col-1">
                 <select id="comunidad" required>
-                    <option value="">Comunidad autónoma</option>
+                    <option value="">Comunidad autónoma *</option>
                     <option value="andalucia">Andalucía</option>
                     <option value="aragon">Aragón</option>
                     <option value="castilla-la-mancha">Castilla-La Mancha</option>
@@ -88,7 +88,7 @@
             <div id="camposAlumno">
             <div class="input-container col-2">
                 <select id="centro" required>
-                  <option value="">Centro de estudios</option>
+                  <option value="">Centro de estudios *</option>
                   <option value="almeria">Almería</option>
                   <option value="arena">Arena</option>
                   <option value="cordoba">Córdoba</option>
@@ -99,14 +99,14 @@
             </div>
             <div class="input-container col-1">
                 <select id="grado" required>
-                  <option value="">Seleccionar grado</option>
+                  <option value="">Seleccionar grado *</option>
                   <option value="gm">Grado Medio</option>
                   <option value="gs">Grado Superior</option>
                 </select>
             </div>
             <div class="input-container col-2">
                 <select id="titulacion" required>
-                  <option value="">Seleccionar titulación</option>
+                  <option value="">Seleccionar titulación *</option>
                   <option value="aux-enf">Auxiliar de Enfermería</option>
                   <option value="farmacia">Farmacia y Parafarmacia</option>
                   <option value="emerg">Emergencias Sanitarias</option>
@@ -122,7 +122,7 @@
              <div id="camposDocente" style="display: none;">
                 <div class="input-container col-1">
                 <select id="titulacion" required>
-                  <option value="">Titulaciones</option>
+                  <option value="">Titulaciones *</option>
                   <option value="aux-enf">Auxiliar de Enfermería</option>
                   <option value="farmacia">Farmacia y Parafarmacia</option>
                   <option value="emerg">Emergencias Sanitarias</option>
@@ -147,16 +147,16 @@
                 <!--Fin formulario docente-->
 
                 <div class="input-container col-1">
-                <input type="text" name="contraseña" placeholder="Contraseña" required>
-            </div>
+                <input type="text" name="contraseña" placeholder="Contraseña *" required> 
+            </div> 
             <div class="input-container col-1">
-                <input type="text" name="confirmar contraseña" placeholder="Confirmar contraseña" required>
+                <input type="text" name="confirmar contraseña" placeholder="Confirmar contraseña *" required>
             </div>
             <div class="input-submit">
                 <input type="submit" class="btn-submit" name="crear" value="Crear cuenta">
             </div>
             <div class="terminos">
-            <a href="#">Terminos y condiciones</a>
+            <a href="#">Términos y condiciones</a>
         </div>
         </div>
     </form>
@@ -218,7 +218,7 @@
             </div>
         </div>
     </footer>
-   <script src="/js/script.js"></script>
+   <script src="/js/side-menu.js"></script>
    <script src="/js/register-form.js"></script>
 </body>
 </html>

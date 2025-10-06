@@ -54,6 +54,7 @@ header {
     max-width: 25px;
     height: 28px;          
     display: block;
+    margin: 25px;
 }
 
 .menu {
@@ -114,10 +115,10 @@ nav a {
 }
 
 .boton2 {
-    background-color: #000;
+    background-color: #444;
     color: white;
     padding: 10px 20px;
-    border: 1px solid #000
+    border: 1px solid #444
 }
 
 .botones-header {
@@ -221,6 +222,10 @@ nav a {
   to { opacity: 1; transform: translateY(0); }
 }
 
+p, h1, h2 {
+  text-align: left;
+}
+
 .intro {
     display: flex;
     justify-content: center;
@@ -237,9 +242,10 @@ nav a {
 
 .texto-intro h1 {
     font-size: 60px;
-    font-weight: 800;
+    font-weight: 400;
     margin-bottom: 20px;
     line-height: 60px;
+    color: #444;
 }
 
 .azul {
@@ -552,7 +558,7 @@ button, input, select, textarea{
         }
 
         .user-type button.activo {
-            background: #003594;
+            background: #FF5B41;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             font-weight: 400;
             color: #ffffff;
@@ -585,12 +591,7 @@ button, input, select, textarea{
             color:#444;
         }
 
-        .input-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px 30px;
-            width: 100%;
-        }
+
 
         .input-container{
             position: relative;
@@ -614,7 +615,7 @@ button, input, select, textarea{
             border: 2px solid #CBCBCB;
             font-size: 16px;
             outline: none;
-            color: #000000;
+            color: #444;
         }
 
         .input-container select {
@@ -667,6 +668,7 @@ button, input, select, textarea{
             grid-column: span 2;
             display: flex;
             justify-content: center;
+            line-height: 50px;
         }
 
         /* Diseño responsive */
