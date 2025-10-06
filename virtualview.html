@@ -25,7 +25,7 @@
             <div class="menu">
         <nav>
             <ul>
-            <li><a href="#" id="selected">Inicio</a></li>
+            <li><a href="/index.html">Inicio</a></li>
             <li><a href="#">Nuestros Centros</a></li>
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Contacto</a></li>
@@ -67,6 +67,10 @@
 
 
     <body onload="start()">
+        
+    <!-- Contenedor WebGL -->
+    <div id="webgl-container">
+
     <!-- Animación de carga -->
     <div id="logo-cargando">
         <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
@@ -82,9 +86,9 @@
         <img src="images/Davante_logotipo_navy.png" alt="Logo_DAVANTE_navy" id="logo-dav-loading">
     </div>
 
-    <!-- Contenedor WebGL -->
-    <div id="webgl-container">
+
         <canvas id="virtual-view"></canvas>
+            </div>
 
         <!-- Unity loader -->
         <script src="Proyecto360/connectwebgl/Build/WebGL_Builds.loader.js"></script>
@@ -134,7 +138,6 @@
                 });
             }
         </script>
-    </div>
 
 </body>
 
