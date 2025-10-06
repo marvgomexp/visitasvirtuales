@@ -15,18 +15,17 @@
 <body>
 
     <!-- Encabezado -->
-    <header>
+    <header id="unityHeaderOculto">
 
     <div class="logo">
-    <a href="index.html" class="logo-link">
-    <img src="images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
-    <span id="titulo">VisitaDAVANTE</span></a>
+    <img src="https://i.ibb.co/XrbMqgCX/DAV.png" alt="Logo DAVANTE" class="logo-img">
+    <span id="mostrarHeader">VisitaDAVANTE</span>
     </div>
         <div class="container__menu">
             <div class="menu">
         <nav>
             <ul>
-            <li><a href="/index.html">Inicio</a></li>
+            <li><a href="#" id="selected">Inicio</a></li>
             <li><a href="#">Nuestros Centros</a></li>
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Contacto</a></li>
@@ -50,8 +49,24 @@
 </div>
     </header>
 
-    <body onload="start()">
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("unityHeaderOculto");
+    const toggle = document.getElementById("mostrarHeader");
 
+    toggle.addEventListener("click", function () {
+      header.classList.toggle("visible");
+
+      if (header.classList.contains("visible")) {
+        header.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+
+
+    <body onload="start()">
     <!-- Animación de carga -->
     <div id="logo-cargando">
         <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
@@ -120,6 +135,7 @@
             }
         </script>
     </div>
+
 </body>
 
                 <!-- Footer -->
