@@ -28,7 +28,7 @@
             <img src="images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
             <ul>
             <li><a href="/index.html">Inicio</a></li>
-            <li><a href="#">Nuestros Centros</a></li>
+            <li><a href="/centros.html">Nuestros Centros</a></li>
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Contacto</a></li>
             </ul>
@@ -92,21 +92,15 @@
                 </select>
             </div>
             <div class="input-container">
-                <select id="grado" name="grado" required>
+                <select id="grado" name="grado" onchange="cambiaGrados()" required>
                   <option value="">Seleccionar grado *</option>
-                  <option value="gm">Grado Medio</option>
-                  <option value="gs">Grado Superior</option>
+                  <option value="grado-medio">Grado Medio</option>
+                  <option value="grado-superior">Grado Superior</option>
                 </select>
             </div>
             <div class="input-container">
                 <select id="titulacion" name="titulacion" required>
                   <option value="">Seleccionar titulación *</option>
-                  <option value="aux-enf">Auxiliar de Enfermería</option>
-                  <option value="farmacia">Farmacia y Parafarmacia</option>
-                  <option value="emerg">Emergencias Sanitarias</option>
-                  <option value="teleco">Instalador de Telecomunicaciones</option>
-                  <option value="electric">Instalaciones Eléctricas y Automáticas</option>
-                  <option value="tapsd">Atención a Personas en Situación de Dependencia</option>
                 </select>
             </div>
             </div>
