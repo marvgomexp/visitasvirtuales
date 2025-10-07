@@ -67,6 +67,7 @@
 
 
     <body onload="start()">
+    <div id="contenedorUnity">
         
     <!-- Contenedor WebGL -->
     <div id="webgl-container">
@@ -93,51 +94,68 @@
         <!-- Unity loader -->
         <script src="Proyecto360/connectwebgl/Build/WebGL_Builds.loader.js"></script>
         <script>
-            function initWebGL(canvas) {
-                let gl = null;
-                try {
-                    gl = canvas.getContext("webgl2")|| canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-                } catch (e) {
-                    console.warn("Error al intentar obtener el contexto WebGL:", e);
-                }
+         function initWebGL(canvas) {
+            let gl = null;
+            try {
+              gl = canvas.getContext("webgl2") || canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+            } catch (e) {
+              console.warn("Error al intentar obtener el contexto WebGL:", e);
+            }
+            return gl;
+          }
 
-                return gl;
+          function start() {
+            const canvas = document.querySelector("#virtual-view");
+
+            if (!initWebGL(canvas)) {
+              document.getElementById("no-webgl-message").style.display = "block";
+              document.getElementById("logo-cargando").style.display = "none";
+              return;
             }
 
-            function start() {
-                const canvas = document.querySelector("#virtual-view");
+            createUnityInstance(canvas, {
+              dataUrl: "Proyecto360/connectwebgl/Build/WebGL_Builds.data",
+              frameworkUrl: "Proyecto360/connectwebgl/Build/WebGL_Builds.framework.js",
+              codeUrl: "Proyecto360/connectwebgl/Build/WebGL_Builds.wasm",
+              streamingAssetsUrl: "Proyecto360/Build360/StreamingAssets",
+              productVersion: "1.0",
+            }).then((unityInstance) => {
+              console.log("✅ Unity cargado con éxito");
 
-                // Verificar compatibilidad con WebGL (incluyendo experimental)
-                if (!initWebGL(canvas)) {
-                    document.getElementById("no-webgl-message").style.display = "block";
-                    document.getElementById("logo-cargando").style.display = "none";
-                    return;
+              document.getElementById("logo-cargando").style.display = "none";
+              canvas.style.opacity = "1";
+              canvas.style.pointerEvents = "auto";
+
+              // 🔹 Activar botón pantalla completa
+              const fsButton = document.getElementById("fullscreen-btn");
+              const icon = fsButton.querySelector("i");
+
+              fsButton.addEventListener("click", () => {
+                const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+                if (!isFullscreen) {
+                  unityInstance.SetFullscreen(1);
+                  icon.classList.replace("fa-expand", "fa-compress");
+                } else {
+                  document.exitFullscreen();
+                  icon.classList.replace("fa-compress", "fa-expand");
                 }
+            });
 
-                // Cargar Unity
-                createUnityInstance(canvas, {
-                    dataUrl: "Proyecto360/connectwebgl/Build/WebGL_Builds.data",
-                    frameworkUrl: "Proyecto360/connectwebgl/Build/WebGL_Builds.framework.js",
-                    codeUrl: "Proyecto360/connectwebgl/Build/WebGL_Builds.wasm",
-                    streamingAssetsUrl: "Proyecto360/Build360/StreamingAssets",
-                    productVersion: "1.0",
-                }).then((unityInstance) => {
-                    console.log("✅ Unity cargado con éxito");
+            // Escuchar cuando se sale del fullscreen manualmente
+            document.addEventListener("fullscreenchange", () => {
+              if (!document.fullscreenElement) {
+                icon.classList.replace("fa-compress", "fa-expand");
+              }
+            });
 
-                    // Ocultar pantalla de carga
-                    document.getElementById("logo-cargando").style.display = "none";
-
-                    // Mostrar el canvas de Unity
-                    canvas.style.opacity = "1";
-                    canvas.style.pointerEvents = "auto";
-
-                }).catch((message) => {
-                    console.error("❌ Error al cargar Unity:", message);
-                    document.getElementById("logo-cargando").style.display = "none";
-                    alert("Error al cargar el visor. Intente recargar la página.");
-                });
-            }
+          }).catch((message) => {
+            console.error("❌ Error al cargar Unity:", message);
+            document.getElementById("logo-cargando").style.display = "none";
+            alert("Error al cargar el visor. Intente recargar la página.");
+          });
+        }
         </script>
+    </div>
 
 </body>
 
