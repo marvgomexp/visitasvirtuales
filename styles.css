@@ -729,11 +729,30 @@ button, input, select, textarea{
             width: 150px;
             margin-top: 20px;
         }
+        /*-- Botón de pantalla completa --*/
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(0, 53, 148, 0.9);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+            z-index: 999;
+        }
+        .fullscreen-btn:hover {
+            background: #FF5B41;
+        }
 
 
 dotlottie-wc{
     width: 800px;}
 
 /*-- Aquí termina CSS de virtualview.html --*/
+
 
 
