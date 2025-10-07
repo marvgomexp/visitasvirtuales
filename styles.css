@@ -706,6 +706,12 @@ button, input, select, textarea{
             pointer-events: none;
         }
 
+   #contenedorUnity {
+        min-height: calc(100vh - 80px - 120px);
+        padding-top: 80px;    
+        box-sizing: border-box;
+}
+
         .no-webgl-message {
             display: none;
             position: absolute;
@@ -724,21 +730,10 @@ button, input, select, textarea{
             margin-top: 20px;
         }
 
-       #unityHeaderOculto {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-
-        #unityHeaderOculto.visible {
-            max-height: 800px;
-        }
-
-
-
 
 dotlottie-wc{
     width: 800px;}
 
 /*-- Aquí termina CSS de virtualview.html --*/
+
 
