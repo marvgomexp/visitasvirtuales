@@ -63,14 +63,14 @@
       <button id="btnDocente" type="button">Docente</button>
     </div>
         <div class="input-group">
-            <div class="input-container col-1">
+            <div class="input-container">
                 <input type="text" name="nombre" placeholder="Nombre completo *" required> 
             </div>
-            <div class="input-container col-2">
+            <div class="input-container">
                 <input type="text" name="correo" placeholder="Correo electrónico *" required>
             </div>
-            <div class="input-container col-1">
-                <select id="comunidad" required>
+            <div class="input-container">
+                <select id="comunidad" name="comunidad" onchange="cambiaCentros()" required>
                     <option value="">Comunidad autónoma *</option>
                     <option value="andalucia">Andalucía</option>
                     <option value="aragon">Aragón</option>
@@ -86,26 +86,20 @@
 
             <!-- Formulario alumno -->
             <div id="camposAlumno">
-            <div class="input-container col-2">
-                <select id="centro" required>
+            <div class="input-container">
+                <select id="centro" name="centro" required>
                   <option value="">Centro de estudios *</option>
-                  <option value="almeria">Almería</option>
-                  <option value="arena">Arena</option>
-                  <option value="cordoba">Córdoba</option>
-                  <option value="fatima">Fatima</option>
-                  <option value="el-ejido">El Ejido</option>
-                  <option value="almenara">Almenara</option>
                 </select>
             </div>
-            <div class="input-container col-1">
-                <select id="grado" required>
+            <div class="input-container">
+                <select id="grado" name="grado" required>
                   <option value="">Seleccionar grado *</option>
                   <option value="gm">Grado Medio</option>
                   <option value="gs">Grado Superior</option>
                 </select>
             </div>
-            <div class="input-container col-2">
-                <select id="titulacion" required>
+            <div class="input-container">
+                <select id="titulacion" name="titulacion" required>
                   <option value="">Seleccionar titulación *</option>
                   <option value="aux-enf">Auxiliar de Enfermería</option>
                   <option value="farmacia">Farmacia y Parafarmacia</option>
@@ -120,8 +114,8 @@
 
             <!-- Formulario docente -->
              <div id="camposDocente" style="display: none;">
-                <div class="input-container col-1">
-                <select id="titulacion" required>
+                <div class="input-container">
+                <select id="titulacion" name="titulacion" required>
                   <option value="">Titulaciones *</option>
                   <option value="aux-enf">Auxiliar de Enfermería</option>
                   <option value="farmacia">Farmacia y Parafarmacia</option>
@@ -132,8 +126,8 @@
                 </select>
             </div>
 
-            <div class="input-container col-2">
-                <select id="modulos" required>
+            <div class="input-container">
+                <select id="modulos" name="modulos" required>
                   <option value="">Módulos que imparte</option>
                   <option value="mod1">Módulo 1</option>
                   <option value="mod2">Módulo 2</option>
@@ -146,10 +140,10 @@
             
                 <!--Fin formulario docente-->
 
-                <div class="input-container col-1">
+                <div class="input-container">
                 <input type="text" name="contraseña" placeholder="Contraseña *" required> 
             </div> 
-            <div class="input-container col-1">
+            <div class="input-container">
                 <input type="text" name="confirmar contraseña" placeholder="Confirmar contraseña *" required>
             </div>
             <div class="input-submit">
