@@ -162,6 +162,7 @@ nav a {
   border-radius: 10px;
   padding: 15px;
   min-width: 220px;
+  width: 100%;
   z-index: 10;
   animation: fadeIn 0.3s ease;
 }
@@ -170,6 +171,8 @@ nav a {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .dropdown-content input {
@@ -178,6 +181,7 @@ nav a {
   padding: 10px;
   margin-bottom: 12px;
   font-size: 14px;
+  width: auto;
 }
 
 .dropdown-content input:focus {
@@ -199,7 +203,7 @@ nav a {
   transition: background 0.3s;
 
   display: block;
-  width: 100%;
+  width: auto;
   padding: 10px;
   margin-bottom: 5px;
   box-sizing: border-box;
