@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Administrador</title>
+    <link rel="stylesheet" href="stylesViewAdmin.css">
+</head>
+
+<body>
+
+    <!-- Encabezado con menú y icono -->
+    <header class="encabezado">
+        <!-- Menú Izquierda (hamburguesa) -->
+        <div class="menu-izquierda">
+            <button id="boton-menu">&#9776;</button>
+            <div id="menu-desplegable" class="menu-desplegable oculto">
+                <ul>
+                    <li><a href="#">Principal</a></li>
+                    <li class="submenu">
+                        <a href="#" id="centros-link">Centros &#9656;</a>
+                        <ul class="submenu-list oculto">
+                            <li><a href="#">Andalucía</a></li>
+                            <li><a href="#">Aragón</a></li>
+                            <li><a href="#">Asturias</a></li>
+                            <li><a href="#">Castilla-La Mancha</a></li>
+                            <li><a href="#">Cataluña</a></li>
+                            <li><a href="#">Región de Murcia</a></li>
+                            <li><a href="#">C.C de Madrid</a></li>
+                            <li><a href="#">C.C Valenciana</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Titulaciones</a></li>
+                    <li><a href="#">Estadisticas</a></li>
+                    <li><a href="#">Permisos de usuarios</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Iconos Derecha: mensaje  -->
+        <div class="icono-derecha">
+            <a href="#" title="Mensajes">&#9993;</a>
+        </div>
+
+
+    </header>
+
+
+    <!-- Cuerpo principal con notificaciones -->
+    <main>
+        <section class="notificaciones">
+            <h2>Notificaciones</h2>
+            <div id="contenedor-notificaciones">
+                <!-- Aquí se insertarán las notificaciones dinámicamente -->
+                <p>No hay notificaciones nuevas.</p>
+            </div>
+        </section>
+        <section class="notificaciones">
+            <h2>Horas actividad usuarios</h2>
+
+            <div class="chart">
+                <div class="bar-container">
+                    <div class="bar" style="height: 40px;"></div>
+                    <div class="label">1 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 70px;"></div>
+                    <div class="label">2 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 30px;"></div>
+                    <div class="label">3 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 90px;"></div>
+                    <div class="label">4 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 120px;"></div>
+                    <div class="label">5 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 150px;"></div>
+                    <div class="label">6 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 200px;"></div>
+                    <div class="label">7 AM</div>
+                </div>
+                <div class="bar-container">
+                    <div class="bar" style="height: 170px;"></div>
+                    <div class="label">8 AM</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const botonMenu = document.getElementById("boton-menu");
+        const menuDesplegable = document.getElementById("menu-desplegable");
+
+
+        // Mostrar / ocultar menú hamburguesa
+        botonMenu.addEventListener("click", () => {
+            menuDesplegable.classList.toggle("oculto");
+        });
+
+        const centrosLink = document.getElementById("centros-link");
+        const submenuList = centrosLink.nextElementSibling;
+
+        centrosLink.addEventListener("click", (e) => {
+            e.preventDefault(); // Evita que el enlace navegue
+            submenuList.classList.toggle("oculto");
+        });
+
+        // Para cerrar el submenú si se clickea fuera
+        document.addEventListener("click", (event) => {
+            if (!centrosLink.contains(event.target) && !submenuList.contains(event.target)) {
+                submenuList.classList.add("oculto");
+            }
+        });
+
+        // Cierra ambos menús si haces clic fuera
+        document.addEventListener("click", (event) => {
+            if (!botonMenu.contains(event.target) && !menuDesplegable.contains(event.target)) {
+                menuDesplegable.classList.add("oculto");
+            }
+        });
+    </script>
+
+
+</body>
+
+
+
+</html>
