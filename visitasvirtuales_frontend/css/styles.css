@@ -239,7 +239,7 @@ p, h1, h2 {
     justify-content: center;
     align-items: center;
     gap: 60px;
-    padding: 160px 40px;
+    padding: 180px 40px 110px;
     flex-wrap: wrap;
 }
 
