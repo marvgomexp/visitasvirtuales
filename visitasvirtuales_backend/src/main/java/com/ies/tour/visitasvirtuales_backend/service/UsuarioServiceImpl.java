@@ -4,6 +4,8 @@ import com.ies.tour.visitasvirtuales_backend.model.Usuario;
 import com.ies.tour.visitasvirtuales_backend.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,10 +13,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections; // Permisos básicos
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Service
-public class UsuarioServiceImpl implements Usuarioservice, UserDetailsService {
+public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
@@ -43,7 +47,6 @@ public class UsuarioServiceImpl implements Usuarioservice, UserDetailsService {
         return usuarioRepository.save(usuarios);
     }
 
-    // Implementación de UserDetailsService
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -53,11 +56,26 @@ public class UsuarioServiceImpl implements Usuarioservice, UserDetailsService {
             // Spring Security lanza esta excepción si no encuentra al usuario
             throw new UsernameNotFoundException("Usuario no encontrado con email: " + email);
         }
+
+        // Inicializamos la colección de autoridades
+        Collection<GrantedAuthority> authorities;
+
+        if (usuario.getRol() == null) {
+            // Si el rol es nulo en la BD, se asigna una lista vacía de permisos
+            System.err.println("ADVERTENCIA CRÍTICA: El usuario " + email
+                    + " NO TIENE ROL ASIGNADO en la BD. Se asignan permisos vacíos.");
+            authorities = Collections.emptyList();
+        } else {
+            // Si el rol existe, lo creamos con el prefijo "ROLE_"
+            String roleName = "ROLE_" + usuario.getRol().name().toUpperCase();
+            authorities = Collections.singletonList(new SimpleGrantedAuthority(roleName));
+        }
+
         // Mapeamos la entidad Usuario a un objeto UserDetails de Spring Security
         return new org.springframework.security.core.userdetails.User(
                 usuario.getEmail(),
                 usuario.getPassword(),
-                Collections.singleton(new org.springframework.security.core.authority.SimpleGrantedAuthority(
-                        "ROLE_" + usuario.getRol().name().toUpperCase())));
+                authorities // Usamos la colección de autoridades comprobada
+        );
     }
 }
