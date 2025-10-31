@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear PDIs</title>
+    <link rel="stylesheet" href="/visitasvirtuales_frontend/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Añadir Punto de Interés</h1>
+
+    <div id="formulario">
+        <label for="nombre">Nombre del PDI:</label>
+        <input type="text" id="nombre" />
+
+        <label for="contenidoJson">Contenido JSON:</label>
+        <textarea id="contenidoJson" placeholder='Introduce los datos'></textarea>
+
+        <button onclick="crearPunto()">Crear Punto de Interés</button>
+        <p id="mensaje"></p>
+    </div>
+
+    <script>
+        // URL de la API
+        const API_URL = "http://localhost:8080/api/pdis/infoPdi";
+
+        const token = localStorage.getItem('jwtToken');
+        const JWT_TOKEN = token ? `Bearer ${token}` : "";
+
+        async function crearPunto() {
+            const nombrePdi = document.getElementById("nombre").value;
+            const contenidoJson = document.getElementById("contenidoJson").value;
+
+            if(!nombrePdi || !contenidoJson){
+                document.getElementById("mensaje").innerText = "Rellena todos los campos."
+                return;
+            }
+
+            // 1. Crear el objeto DTO para el backend
+            const pdiDTO = {
+                nombre: nombrePdi,
+                contenidoJson: contenidoJson
+            };
+
+            try{
+                const respuesta = await fetch(API_URL,{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": JWT_TOKEN 
+                    },
+                    body: JSON.stringify(pdiDTO)
+                });
+
+                const mensajeElement = document.getElementById("mensaje");
+
+                if(respuesta.ok){
+                    // Si la respuesta es 201 Created
+                    const pdiCreado = await respuesta.json();
+                    mensajeElement.style.color = "green";
+                    mensajeElement.innerHTML = `PDI creado con éxito. ID asignado: <b>${pdiCreado.idPdi}<b>`;
+
+                    // Limpiar formulario 
+                    document.getElementById("nombre").value = "";
+                    document.getElementById("contenidoJson").value = "";
+                } else{
+                    // Si la respuesta es un error
+                    const errorData = await respuesta.json();
+                    mensajeElement.style.color = "red";
+                    mensajeElement.innerHTML = `Error ${respuesta.status}: ${errorData.message || 'Error desconocido'}`;
+                }
+            }catch(error){
+                console.error('Error de red:', error);
+                document.getElementById("mensaje").style.color = "red";
+                document.getElementById("mensaje").innerText = "Error de conexión con el servidor.";
+            }
+        
+        }
+    </script>
+</body>
+</html>

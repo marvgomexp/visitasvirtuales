@@ -4,63 +4,83 @@ import com.ies.tour.visitasvirtuales_backend.dto.LoginRequest;
 import com.ies.tour.visitasvirtuales_backend.dto.RegisterRequest;
 import com.ies.tour.visitasvirtuales_backend.model.Usuario;
 import com.ies.tour.visitasvirtuales_backend.model.RolUsuario;
-import com.ies.tour.visitasvirtuales_backend.service.Usuarioservice;
+import com.ies.tour.visitasvirtuales_backend.service.UsuarioService;
+import com.ies.tour.visitasvirtuales_backend.security.jwt.JwtUtils;
+import com.ies.tour.visitasvirtuales_backend.payload.response.JwtResponse;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@RestController // Indica que esta clase maneja las peticiones REST
-@RequestMapping("api/auth") // Ruta para los endpoints de autenticación
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("api/auth")
 public class AuthController {
-    private final Usuarioservice usuarioservice;
+    private final UsuarioService usuarioservice;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
 
     @Autowired
-    public AuthController(Usuarioservice usuarioservice) {
+    public AuthController(UsuarioService usuarioservice,
+            AuthenticationManager authenticationManager,
+            JwtUtils jwtUtils) {
         this.usuarioservice = usuarioservice;
+        this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
     }
 
     // ENDPOINT DE REGISTRO
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest request) {
 
-        // 1. Validación: Comprueba si el email ya existe
         if (usuarioservice.findByEmail(request.getEmail()) != null) {
             return new ResponseEntity<>("El email ya esta en uso.", HttpStatus.BAD_REQUEST);
         }
 
-        // 2. Mapear DTO a Entidad
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombre(request.getNombre());
         nuevoUsuario.setEmail(request.getEmail());
         nuevoUsuario.setPassword(request.getPassword());
 
-        // 3. Asignar rol por defecto
-        // Se asigna el rol 'alumno' si no se especifica
         try {
-            nuevoUsuario.setRol(RolUsuario.valueOf(request.getRol().toLowerCase()));
+            nuevoUsuario.setRol(RolUsuario.valueOf(request.getRol().toUpperCase())); // Usar toUpperCase para la
+                                                                                     // conversión
         } catch (IllegalArgumentException e) {
-            nuevoUsuario.setRol(RolUsuario.alumno); // Rol por defecto
+            nuevoUsuario.setRol(RolUsuario.alumno);
         }
 
-        // 4. Guardar en la base de datos
         Usuario usuarioGuardado = usuarioservice.save(nuevoUsuario);
 
-        // Devolver respuesta exitosa
         return new ResponseEntity<>(usuarioGuardado, HttpStatus.CREATED);
     }
 
     // ENDPOINT DE LOGIN
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest request) {
-        // Simplemente busca el usuario sin verificación de password
-        Usuario usuario = usuarioservice.findByEmail(request.getEmail());
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()));
 
-        if (usuario != null) {
-            // Cuando se implemente la seguridad, este endpoint devolvera un Token
-            return new ResponseEntity<>("Usuario encontrado.", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Credenciales inválidas.", HttpStatus.UNAUTHORIZED);
-        }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // 1. GENERAR EL TOKEN
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        // 2. Extraer detalles para respuesta
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        // Suponiendo que solo se tiene un rol
+        String rol = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()).get(0);
+        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), rol));
     }
 }
