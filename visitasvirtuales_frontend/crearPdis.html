@@ -26,8 +26,9 @@
     <script>
         // URL de la API
         const API_URL = "http://localhost:8080/api/pdis/infoPdi";
-        
-        const JWT_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcm9mZXNvclBydWViYUBlbWFpbC5jb20iLCJpYXQiOjE3NjE3NTE0NzMsImV4cCI6MTc2MTgzNzg3M30.ULjiVqefPsKuCLzg5C1zKuhDgTkvW1hPG8nC9PWAFyQ"; // REEMPLAZAR POR TOKEN REAL
+
+        const token = localStorage.getItem('jwtToken');
+        const JWT_TOKEN = token ? `Bearer ${token}` : "";
 
         async function crearPunto() {
             const nombrePdi = document.getElementById("nombre").value;
@@ -38,7 +39,7 @@
                 return;
             }
 
-            // Crear objeto DTO para el backend
+            // 1. Crear el objeto DTO para el backend
             const pdiDTO = {
                 nombre: nombrePdi,
                 contenidoJson: contenidoJson
