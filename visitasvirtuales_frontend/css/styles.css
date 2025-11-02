@@ -1166,4 +1166,110 @@ dotlottie-wc{
        .profile-info {
          min-width: 100%;
        }
+
+     }
+
+     /* ==== página crearPdis  ==== */
+     /* Centrado y card azul */
+     #formulario {
+        background: #003594;
+        padding: 40px 50px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        width: min(100%, 900px);
+        margin: 120px auto 40px; /* centra el bloque en la página */
+        text-align: left;
+     } 
+
+     /* Etiquetas y campos */
+     #formulario label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #fff;
+     }
+
+     #formulario input,
+     #formulario textarea {
+       width: 100%;
+       padding: 14px 12px;
+       border: 2px solid #d9e2ff;
+       border-radius: 8px;
+       font-size: 16px;
+       color: #003594;
+       background: #fff;
+       outline: none;
+       resize: vertical;
+       margin-bottom: 20px;
+       transition: all .3s ease;
+       font-family: 'Manrope', sans-serif;
+     }
+
+     #formulario input:focus,
+     #formulario textarea:focus {
+       border-color: #FF5B41;
+       box-shadow: 0 0 6px rgba(255,91,65,.4);
+     }
+
+     /* === BOTÓN: usa el botón existente sin clase === */
+     #formulario button {
+       display: block;
+       margin: 10px auto 0;
+       background: #444 !important;   
+       color: #fff !important;
+       border: 1px solid #444;
+       border-radius: 50px !important; /* redondeado  */
+       padding: 12px 40px;
+       font-size: 16px;
+       font-weight: 600;
+       cursor: pointer;
+       transition: all .3s ease;
+       font-family: 'Manrope', sans-serif;
+       appearance: none;        /* quita estilo nativo */
+       -webkit-appearance: none;
+     }
+
+     #formulario button:hover {
+       background: #FF5B41 !important; /* interacción naranja */
+       border-color: #FF5B41;
+       transform: translateY(-2px);
+       box-shadow: 0 4px 10px rgba(255,91,65,.4);
+     }
+
+     /* Mensaje */
+     #mensaje {
+       text-align: center;
+       font-size: 15px;
+       margin-top: 15px;
+       color: #fff;
+       line-height: 1.4;
+     }
+
+     /* Responsive */
+     @media (max-width: 1024px) {
+      #formulario { padding: 35px 40px; width: min(90%, 720px); }
+     }
+     @media (max-width: 720px) {
+      #formulario { padding: 25px 20px; border-radius: 12px; }
+      #formulario button { width: 100%; padding: 14px; font-size: 15px; }
+     }
+
+     body h1 {
+      text-align: center;
+      color: #003594;
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 160px; /* para no chocar con el header fijo */
+      margin-bottom: -100px; /* lo acerca visualmente al formulario */
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: 0.5px;
+     }
+
+     /* Ajuste responsive */
+     @media (max-width: 720px) {
+      body h1 {
+        font-size: 26px;
+        margin-top: 120px;
+        margin-bottom: -80px;
+      }
      }
