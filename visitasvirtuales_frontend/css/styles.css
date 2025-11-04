@@ -849,6 +849,41 @@ dotlottie-wc{
 
      /* PÁGINA DE CONFIGURACIÓN DE PERFIL */
 
+     #profile-menu {
+        position: fixed;
+        top: 80px; 
+        height: 60px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+     }
+     
+     #profile-menu ul {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+     }      
+
+     #profile-menu ul li {
+        color: #003594;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.3s, background 0.3s;
+        padding: 8px 12px;
+        border-radius: 6px;
+     }      
+      
+     #profile-menu ul li:hover {
+        background-color: #f0f4ff;
+        color: #002570;
+}
+
      .profile-section {
         display: flex;
         gap: 40px;
@@ -1043,120 +1078,120 @@ dotlottie-wc{
      }
 
      /* Contenedor general de cada campo editable */
-.editable-field {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.editable-field:last-child {
-  border-bottom: none;
-}
-
-.editable-field label {
-  font-weight: 600;
-  color: #444;
-  font-size: 14px;
-  flex: 0 0 160px;
-}
-
-/* Valor visible antes de editar */
-.editable-field .value {
-  flex: 1;
-  color: #555;
-  font-size: 15px;
-  line-height: 1.4;
-  padding-right: 10px;
-}
-
-/* Icono de lápiz */
-.editable-field .edit-icon {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #003594;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  padding: 6px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.editable-field .edit-icon:hover {
-  background: rgba(0, 53, 148, 0.08);
-  color: #FF5B41;
-}
-
-/* Input en modo edición */
-.editable-field .input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 2px solid #CBCBCB;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #444;
-  background-color: #fff;
-  transition: border-color 0.2s;
-}
-
-.editable-field .input:focus {
-  border-color: #003594;
-  outline: none;
-}
-
-/* Botones de acción inline */
-.save-inline {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-.save-inline .btn {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  border-radius: 8px;
-  border: none;
-  padding: 8px 14px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.save-inline .btn.save {
-  background-color: #003594;
-  color: #fff;
-}
-
-.save-inline .btn.save:hover {
-  background-color: #FF5B41;
-}
-
-.save-inline .btn.cancel {
-  background-color: #fff;
-  border: 1px solid #CBCBCB;
-  color: #003594;
-}
-
-.save-inline .btn.cancel:hover {
-  background-color: #f3f3f3;
-}
-
-/* Estado oculto o visible */
-.hidden {
-  display: none !important;
-}
-
-/* Mensajes de error */
-.error {
-  color: #FF5B41;
-  font-size: 13px;
-  margin-top: 5px;
-}
+     .editable-field {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 12px 0;
+       border-bottom: 1px solid #e2e8f0;
+     }
      
+     .editable-field:last-child {
+       border-bottom: none;
+     }
+     
+     .editable-field label {
+       font-weight: 600;
+       color: #444;
+       font-size: 14px;
+       flex: 0 0 160px;
+     }
+     
+     /* Valor visible antes de editar */
+     .editable-field .value {
+       flex: 1;
+       color: #555;
+       font-size: 15px;
+       line-height: 1.4;
+       padding-right: 10px;
+     }
+     
+     /* Icono de lápiz */
+     .editable-field .edit-icon {
+       background: transparent;
+       border: none;
+       cursor: pointer;
+       color: #003594;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border-radius: 6px;
+       padding: 6px;
+       transition: background 0.2s, color 0.2s;
+     }
+     
+     .editable-field .edit-icon:hover {
+       background: rgba(0, 53, 148, 0.08);
+       color: #FF5B41;
+     }
+     
+     /* Input en modo edición */
+     .editable-field .input {
+       width: 100%;
+       padding: 10px 12px;
+       border: 2px solid #CBCBCB;
+       border-radius: 8px;
+       font-size: 14px;
+       color: #444;
+       background-color: #fff;
+       transition: border-color 0.2s;
+     }
+     
+     .editable-field .input:focus {
+       border-color: #003594;
+       outline: none;
+     }
+     
+     /* Botones de acción inline */
+     .save-inline {
+       display: flex;
+       gap: 10px;
+       justify-content: flex-end;
+       margin-top: 10px;
+     }
+     
+     .save-inline .btn {
+       font-family: 'Manrope', sans-serif;
+       font-weight: 600;
+       font-size: 13px;
+       border-radius: 8px;
+       border: none;
+       padding: 8px 14px;
+       cursor: pointer;
+       transition: background 0.3s;
+     }
+     
+     .save-inline .btn.save {
+       background-color: #003594;
+       color: #fff;
+     }
+     
+     .save-inline .btn.save:hover {
+       background-color: #FF5B41;
+     }
+     
+     .save-inline .btn.cancel {
+       background-color: #fff;
+       border: 1px solid #CBCBCB;
+       color: #003594;
+     }
+     
+     .save-inline .btn.cancel:hover {
+       background-color: #f3f3f3;
+     }
+     
+     /* Estado oculto o visible */
+     .hidden {
+       display: none !important;
+     }
+     
+     /* Mensajes de error */
+     .error {
+       color: #FF5B41;
+       font-size: 13px;
+       margin-top: 5px;
+     }
+          
      /* Responsive del perfil */
      @media (max-width: 768px) {
        .profile-card {
