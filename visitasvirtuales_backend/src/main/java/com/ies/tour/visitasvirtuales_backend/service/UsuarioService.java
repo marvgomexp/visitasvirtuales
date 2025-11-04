@@ -2,7 +2,7 @@ package com.ies.tour.visitasvirtuales_backend.service;
 
 import com.ies.tour.visitasvirtuales_backend.model.Usuario;
 
-public interface UsuarioService {
+public interface Usuarioservice {
     // Método para que Spring Security encuentre al usuario por email
     Usuario findByEmail(String email);
 
