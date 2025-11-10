@@ -1,138 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista de Administrador</title>
-    <link rel="stylesheet" href="stylesViewAdmin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisitaDAVANTE</title>
+  <link rel="stylesheet" href="/visitasvirtuales_frontend/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/0a4e7dfe84.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+  <header>
+    <div class="logo">
+      <a href="#" class="logo-link">
+        <img src="/visitasvirtuales_frontend/images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
+        <span id="titulo">VisitaDAVANTE</span>
+      </a>
+    </div>
 
-    <!-- Encabezado con menú y icono -->
-    <header class="encabezado">
-        <!-- Menú Izquierda (hamburguesa) -->
-        <div class="menu-izquierda">
-            <button id="boton-menu">&#9776;</button>
-            <div id="menu-desplegable" class="menu-desplegable oculto">
+    <div class="container__menu">
+      <div class="menu">
+        <i class="fa-solid fa-bars" id="movil_menu"></i>
+        <div id="back_menu"></div>
+
+        <nav id="nav">
+          <ul>
+            <li><a href="#" data-page="gestionPermisos.html">Gestión de usuarios</a></li>
+            <li><a href="#" data-page="#">Gestión de centros</a></li>
+            <li><a href="#" data-page="crearPdis.html">Editar Puntos de Interés</a></li>
+            <li><a href="#" data-page="#">Editar Contenido Web</a></li>
+          </ul>
+        </nav>
+
+        <div class="botones-header">
+          <div class="dropdown">
+            <div class="user-name">usuarioejemplo</div>
+            <div class="dropdown-content">
+              <div class="profile-img">
+                <img src="/visitasvirtuales_frontend/images/avatar-placeholder.jpg" alt="Foto de perfil" class="profile-img">
+              </div>
+              <div class="profile-options">
                 <ul>
-                    <li><a href="#">Principal</a></li>
-                    <li class="submenu">
-                        <a href="#" id="centros-link">Centros &#9656;</a>
-                        <ul class="submenu-list oculto">
-                            <li><a href="#">Andalucía</a></li>
-                            <li><a href="#">Aragón</a></li>
-                            <li><a href="#">Asturias</a></li>
-                            <li><a href="#">Castilla-La Mancha</a></li>
-                            <li><a href="#">Cataluña</a></li>
-                            <li><a href="#">Región de Murcia</a></li>
-                            <li><a href="#">C.C de Madrid</a></li>
-                            <li><a href="#">C.C Valenciana</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Titulaciones</a></li>
-                    <li><a href="#">Estadisticas</a></li>
-                    <li><a href="#">Permisos de usuarios</a></li>
+                  <li><a href="/visitasvirtuales_frontend/profile-setting.html">Mi cuenta</a></li>
+                  <li><a href="/visitasvirtuales_frontend/profile-setting.html">Cambiar contraseña</a></li>
                 </ul>
+              </div>
             </div>
+          </div>
         </div>
 
+      </div>
+    </div>
+  </header>
 
-        <!-- Iconos Derecha: mensaje  -->
-        <div class="icono-derecha">
-            <a href="#" title="Mensajes">&#9993;</a>
-        </div>
+  <!-- Aquí se cargará el contenido dinámico -->
+  <main id="contenido">
+    <h2>Bienvenido al Panel de Administrador</h2>
+    <p>Selecciona una opción del menú para comenzar.</p>
+  </main>
 
+  <script>
+  // Selecciona enlaces del menú y contenedor principal
+  const links = document.querySelectorAll("nav a[data-page]");
+  const contenido = document.getElementById("contenido");
 
-    </header>
+  // Función para cargar página dentro de un iframe
+  function cargarPagina(archivo) {
+    if (!archivo || archivo === "#") {
+      contenido.innerHTML = `
+        <h2>Bienvenido al Panel de Administrador</h2>
+        <p>Selecciona una opción del menú para comenzar.</p>
+      `;
+      return;
+    }
 
+    // Crear iframe dinámico
+    const iframe = document.createElement("iframe");
+    iframe.src = `/visitasvirtuales_frontend/${archivo}`;
+    iframe.style.width = "100%";
+    iframe.style.height = "80vh"; 
+    iframe.style.border = "none";
 
-    <!-- Cuerpo principal con notificaciones -->
-    <main>
-        <section class="notificaciones">
-            <h2>Notificaciones</h2>
-            <div id="contenedor-notificaciones">
-                <!-- Aquí se insertarán las notificaciones dinámicamente -->
-                <p>No hay notificaciones nuevas.</p>
-            </div>
-        </section>
-        <section class="notificaciones">
-            <h2>Horas actividad usuarios</h2>
+    // Reemplazar contenido anterior con el iframe
+    contenido.innerHTML = "";
+    contenido.appendChild(iframe);
+  }
 
-            <div class="chart">
-                <div class="bar-container">
-                    <div class="bar" style="height: 40px;"></div>
-                    <div class="label">1 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 70px;"></div>
-                    <div class="label">2 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 30px;"></div>
-                    <div class="label">3 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 90px;"></div>
-                    <div class="label">4 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 120px;"></div>
-                    <div class="label">5 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 150px;"></div>
-                    <div class="label">6 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 200px;"></div>
-                    <div class="label">7 AM</div>
-                </div>
-                <div class="bar-container">
-                    <div class="bar" style="height: 170px;"></div>
-                    <div class="label">8 AM</div>
-                </div>
-            </div>
-        </section>
-    </main>
+  // Evento de clic en los enlaces del menú
+  links.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const archivo = link.getAttribute("data-page");
+      cargarPagina(archivo);
 
-    <script>
-        const botonMenu = document.getElementById("boton-menu");
-        const menuDesplegable = document.getElementById("menu-desplegable");
-
-
-        // Mostrar / ocultar menú hamburguesa
-        botonMenu.addEventListener("click", () => {
-            menuDesplegable.classList.toggle("oculto");
-        });
-
-        const centrosLink = document.getElementById("centros-link");
-        const submenuList = centrosLink.nextElementSibling;
-
-        centrosLink.addEventListener("click", (e) => {
-            e.preventDefault(); // Evita que el enlace navegue
-            submenuList.classList.toggle("oculto");
-        });
-
-        // Para cerrar el submenú si se clickea fuera
-        document.addEventListener("click", (event) => {
-            if (!centrosLink.contains(event.target) && !submenuList.contains(event.target)) {
-                submenuList.classList.add("oculto");
-            }
-        });
-
-        // Cierra ambos menús si haces clic fuera
-        document.addEventListener("click", (event) => {
-            if (!botonMenu.contains(event.target) && !menuDesplegable.contains(event.target)) {
-                menuDesplegable.classList.add("oculto");
-            }
-        });
-    </script>
-
-
-</body>
-
-
-
-</html>
+      // Actualiza el estado del menú activo
+      links.forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
+</script>
