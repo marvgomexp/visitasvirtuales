@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import java.util.Set; // Para la relación OneToMany
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "VisitasVirtuales")
+@Table(name = "visitas_virtuales")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,7 +34,4 @@ public class VisitaVirtual {
     @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion; // Se usa LocalDate para el tipo DATE
 
-    // Relación Bidireccional -> Una Visita tiene muchos PuntosDeInteres
-    @OneToMany(mappedBy = "visitaVirtual", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PuntoDeInteres> puntosDeInteres;
 }

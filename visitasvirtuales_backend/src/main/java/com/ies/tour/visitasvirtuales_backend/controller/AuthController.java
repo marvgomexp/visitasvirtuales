@@ -50,9 +50,12 @@ public class AuthController {
         nuevoUsuario.setPassword(request.getPassword());
 
         try {
-            nuevoUsuario.setRol(RolUsuario.valueOf(request.getRol().toUpperCase())); // Usar toUpperCase para la
-                                                                                     // conversión
-        } catch (IllegalArgumentException e) {
+            // 1. Intenta tomar el rol del Request (ej: "Admin" -> "ADMIN")
+            RolUsuario rolSolicitado = RolUsuario.valueOf(request.getRol().toLowerCase());
+            nuevoUsuario.setRol(rolSolicitado);
+        } catch (Exception e) {
+            // 2. Si el rol es nulo o inválido, asignar el rol por defecto.
+            System.err.println("Rol inválido o nulo proporcionado. Asignando rol por defecto: ALUMNO");
             nuevoUsuario.setRol(RolUsuario.alumno);
         }
 
@@ -76,11 +79,12 @@ public class AuthController {
 
         // 2. Extraer detalles para respuesta
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-        // Suponiendo que solo se tiene un rol
+        // Obtener el objeto Usuario completo
+        Usuario usuario = usuarioservice.findByEmail(request.getEmail());
+        // 3. Obtener el rol
         String rol = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()).get(0);
-        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), rol));
+        return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), rol, usuario.getNombre()));
     }
 }

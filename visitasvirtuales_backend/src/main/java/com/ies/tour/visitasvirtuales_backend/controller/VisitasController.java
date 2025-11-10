@@ -25,10 +25,11 @@ public class VisitasController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'ALUMNO')")
     public ResponseEntity<List<VisitaVirtual>> listarVisitas() {
         // Llama al método de tu servicio para obtener la lista
         List<VisitaVirtual> lista = visitaVirtualService.findAll();
-        System.out.println("DEBUG: ¡El controlador de Visitas ha sido alcanzado y llama al servicio!");
+        System.out.println("¡El controlador de Visitas ha sido alcanzado y llama al servicio!");
         return ResponseEntity.ok(lista); // Devuelve el código 200
     }
 }

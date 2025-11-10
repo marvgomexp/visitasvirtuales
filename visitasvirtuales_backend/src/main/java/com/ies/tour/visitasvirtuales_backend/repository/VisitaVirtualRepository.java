@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VisitaVirtualRepository extends JpaRepository<VisitaVirtual, Integer> {
+public interface VisitaVirtualRepository extends JpaRepository<VisitaVirtual, Long> {
     // Método para obtener todas las visitas virtuales de un Centro
     List<VisitaVirtual> findByCentro_IdCentros(Integer idCentros);
 

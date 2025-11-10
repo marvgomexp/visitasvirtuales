@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class CentrosController {
 
     // GET /api/centros
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'ALUMNO')") // Lectura: Permitido a ADMIN y ALUMNO
     public ResponseEntity<List<Centros>> listarTodos() {
         List<Centros> centros = centroService.findAll();
         return ResponseEntity.ok(centros);
@@ -29,6 +31,7 @@ public class CentrosController {
 
     // GET /api/centros/{id}
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'ALUMNO')") // Lectura: Permitido a ADMIN y ALUMNO
     public ResponseEntity<Centros> listarPorId(@PathVariable Integer id) {
         return centroService.findById(id)
                 .map(ResponseEntity::ok) // Si lo encuentra, devuelve 200 OK
@@ -36,11 +39,8 @@ public class CentrosController {
     }
 
     // POST /api/centros
-    // Esta ruta solo debería ser accesible para usuarios con rol
-    // ADMIN
     @PostMapping
-    // @PreAuthorize("hasRole('ADMIN')") // Descomentar para aplicar seguridad
-    // basada en roles
+    @PreAuthorize("hasRole('ADMINISTRADOR')") // Escritura: Solo para ADMIN
     public ResponseEntity<Centros> crearCentro(@RequestBody Centros centro) {
         Centros nuevoCentro = centroService.save(centro);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoCentro); // Devuelve 201 Created
@@ -48,8 +48,7 @@ public class CentrosController {
 
     // DELETE /api/centros/{id}
     @DeleteMapping("/{id}")
-    // @PreAuthorize("hasRole('ADMIN')") // Descomentar para aplicar seguridad
-    // basada en roles
+    @PreAuthorize("hasRole('ADMINISTRADOR')") // Eliminación: Solo para ADMIN
     public ResponseEntity<Void> eliminarCentro(@PathVariable Integer id) {
         if (centroService.findById(id).isPresent()) {
             centroService.deleteById(id);
