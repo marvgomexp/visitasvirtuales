@@ -545,7 +545,7 @@ button, input, select, textarea{
 
 /* PÁGINA DE REGISTRO */
 
-        form{
+        form {
             background-color: none;
             padding: 160px 40px;
             width: 600px;
@@ -554,7 +554,7 @@ button, input, select, textarea{
             margin: auto;
         }
 
-        form h2{
+        form h2 {
             font-size: 25px;
             color: #444;
             margin-bottom: 35px;
@@ -614,7 +614,7 @@ button, input, select, textarea{
             grid-column: 2;
         }
 
-        .input-container > input{
+        .input-container > input {
             padding: 15px 12px 15px 12px;
             width: 100%;
             margin-bottom: 15px;
@@ -624,7 +624,7 @@ button, input, select, textarea{
             font-size: 16px;
             outline: none;
             color: #444;
-        }
+         }
 
         .input-container select {
             padding: 15px 12px;
@@ -654,7 +654,7 @@ button, input, select, textarea{
         .btn-submit{
             background-color: #0234ab;
             color: #ffffff;
-            border-radius: 35px;
+            border-radius: 8px;
             padding: 10px 20px;
             font-size: 16px;
             text-decoration: none;
@@ -665,6 +665,16 @@ button, input, select, textarea{
             cursor: pointer;
             color: #F5F5F5;
             background-color: #FF5B41;
+        }
+
+        .btn-cancel{
+            background-color: #fff;
+            color: #0234ab;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-style: none;
         }
 
         .input-submit {
@@ -1191,6 +1201,186 @@ dotlottie-wc{
        font-size: 13px;
        margin-top: 5px;
      }
+
+     /* Contenedor general de secciones */
+     .profile-info.full {
+       background-color: #fff;
+       border-radius: 10px;
+       padding: 30px 40px;
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+       flex: 1;
+       max-width: 800px;
+       text-align: left;
+     }
+     
+     /* Encabezado de las secciones */
+     .profile-info.full h2,
+     .profile-info.full h3 {
+       color: #003594;
+       font-weight: 700;
+       margin-bottom: 10px;
+     }
+     
+     .profile-info.full .subtitulo,
+     .profile-info.full p {
+       color: #777;
+       font-size: 15px;
+       margin-bottom: 25px;
+     }
+     
+     /* Sección de notificaciones */
+     .noti-card {
+       background-color: #f8f9ff;
+       border: 1px solid #dbe3ff;
+       border-radius: 10px;
+       padding: 18px 24px;
+       margin-bottom: 20px;
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       transition: box-shadow 0.2s ease;
+     }
+     
+     .noti-card:hover {
+       box-shadow: 0 3px 8px rgba(0, 53, 148, 0.1);
+     }
+     
+     .noti-card .noti-info h3 {
+       color: #003594;
+       font-size: 16px;
+       margin-bottom: 4px;
+     }
+     
+     .noti-card .noti-info p {
+       color: #666;
+       font-size: 14px;
+     }
+     
+     /* Interruptores tipo “switch” */
+     .switch {
+       position: relative;
+       display: inline-block;
+       width: 48px;
+       height: 26px;
+     }
+     
+     .switch input {
+       opacity: 0;
+       width: 0;
+       height: 0;
+     }
+     
+     .slider {
+       position: absolute;
+       cursor: pointer;
+       top: 0; left: 0; right: 0; bottom: 0;
+       background-color: #ccc;
+       transition: 0.4s;
+       border-radius: 26px;
+     }
+     
+     .slider:before {
+       position: absolute;
+       content: "";
+       height: 20px;
+       width: 20px;
+       left: 3px;
+       bottom: 3px;
+       background-color: white;
+       transition: 0.4s;
+       border-radius: 50%;
+     }
+     
+     input:checked + .slider {
+       background-color: #003594;
+     }
+     
+     input:checked + .slider:before {
+       transform: translateX(22px);
+     }
+     
+     .btn-guardar {
+       background-color: #003594;
+       color: #fff;
+       border: none;
+       border-radius: 8px;
+       padding: 10px 20px;
+       font-weight: 600;
+       font-family: 'Manrope', sans-serif;
+       cursor: pointer;
+       transition: background 0.3s;
+       margin-top: 20px;
+     }
+     
+     .btn-guardar:hover {
+       background-color: #FF5B41;
+     }
+     
+     /* Sección de cambio de contraseña */
+    #change-password-form {
+       display: flex;
+       flex-direction: column;
+       gap: 4px;
+       padding: 4px 0;
+       text-align: center;
+       align-items: center;
+       margin: 0 auto !important;
+     }     
+
+     #change-password-form label {
+       font-weight: 600;
+       color: #444;
+       font-size: 13px;
+       margin-bottom: 0;
+       line-height: 1.1;
+       text-align: center;
+     }     
+
+     #change-password-form input[type="password"] {
+       width: 68%; 
+       border: 2px solid #CBCBCB;
+       border-radius: 8px;
+       padding: 7px 9px; 
+       font-size: 14px;
+       transition: border-color 0.2s ease;
+       margin-bottom: 3px;
+       text-align: center;
+     }     
+
+     #change-password-form input[type="password"]:focus {
+       border-color: #003594;
+       outline: none;
+     }     
+
+     #change-password-form .btn.save {
+       background-color: #003594;
+       color: #fff;
+       font-family: 'Manrope', sans-serif;
+       font-weight: 600;
+       border: none;
+       border-radius: 8px;
+       padding: 6px 12px;
+       cursor: pointer;
+       transition: background 0.3s;
+       margin-top: 6px;
+       text-align: center;
+     }     
+
+     #change-password-form .btn.save:hover {
+       background-color: #FF5B41;
+     }
+     
+     /* Responsive */
+     @media (max-width: 768px) {
+       .profile-info.full {
+         padding: 20px;
+       }
+       .noti-card {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 10px;
+       }
+     }
           
      /* Responsive del perfil */
      @media (max-width: 768px) {
@@ -1203,6 +1393,7 @@ dotlottie-wc{
        }
 
      }
+  
 
      /* ==== PÁGINA CREAR PDIS ==== */
     .crear-pdis {
@@ -1224,7 +1415,7 @@ dotlottie-wc{
        letter-spacing: 0.5px;
      }
 
-     /* === CARD principal del formulario === */
+     /* Card principal del formulario */
      #formulario {
        background: #003594; 
        padding: 40px 50px;
@@ -1257,14 +1448,14 @@ dotlottie-wc{
         transition: all 0.3s ease;
       }
 
-      /* borde y sombra en naranja cuando se enfoca */
+      /* Borde y sombra */
       #formulario input:focus,
       #formulario textarea:focus {
         border-color: #FF5B41;
         box-shadow: 0 0 6px rgba(255, 91, 65, 0.4);
       }
 
-      /* Botón principal coherente */
+      /* Botón principal */
       #formulario button {
         display: block;
         margin: 10px auto 0;
