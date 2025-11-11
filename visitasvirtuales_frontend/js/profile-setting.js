@@ -206,7 +206,7 @@ function exitEdit(node, field, saved, user) {
 }
 
 // CAMBIO DE SECCIONES DEL PERFIL
-// ==============================
+
 document.addEventListener("DOMContentLoaded", () => {
   const btnGeneral = document.getElementById("btnGeneral");
   const btnNotif = document.getElementById("btnNotif");
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!btnGeneral || !btnNotif || !btnPass || !profileSection) return;
 
-  // --- CONTENIDO DE CADA SECCIÓN ---
+  // CONTENIDO DE CADA SECCIÓN 
   const notifContent = `
     <div class="profile-info full">
       <div id="confiNotif">
@@ -275,12 +275,12 @@ document.addEventListener("DOMContentLoaded", () => {
       <h3>Cambiar contraseña</h3>
       <p>Introduce tu contraseña actual y la nueva para actualizarla</p>
       <form id="change-password-form">
-        <label>Contraseña actual:</label><br>
-        <input type="password" id="current-password" required><br><br>
-        <label>Nueva contraseña:</label><br>
-        <input type="password" id="new-password" required><br><br>
-        <label>Confirmar nueva contraseña:</label><br>
-        <input type="password" id="confirm-password" required><br><br>
+        <label>Contraseña actual:</label>
+        <input type="password" id="current-password" required><br>
+        <label>Nueva contraseña:</label>
+        <input type="password" id="new-password" required><br>
+        <label>Confirmar nueva contraseña:</label>
+        <input type="password" id="confirm-password" required><br>
         <button type="submit" class="btn save">Actualizar contraseña</button>
       </form>
     </div>
@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
       case "general":
         btnGeneral.classList.add("activo");
         profileSection.innerHTML = ""; 
+
         // Cargar de nuevo la pestaña general y reactivar funcionalidad
         const script = document.createElement("script");
         script.textContent = `(${initGeneralTab.toString()})();`;
