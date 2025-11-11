@@ -3,82 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear PDIs</title>
+    <title>Crear/Editar PDIs</title>
     <link rel="stylesheet" href="/visitasvirtuales_frontend/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
-<body class="crearPdi">
-    <div class="titulo-pdis"><h1>Añadir Punto de Interés</h1></div>
+<body class="crear-pdis">
 
     <div id="formulario">
+        <label for="pdiSelect">Selecciona un PDI:</label>
+        <select id="pdiSelect">
+            <option value="">-- Crear nuevo PDI --</option>
+        </select>
+
         <label for="nombre">Nombre del PDI:</label>
         <input type="text" id="nombre" />
 
         <label for="contenidoJson">Contenido JSON:</label>
         <textarea id="contenidoJson" placeholder='Introduce los datos'></textarea>
 
-        <button onclick="crearPunto()">Crear Punto de Interés</button>
+        <button id="btnEnviar">Guardar PDI</button>
         <p id="mensaje"></p>
     </div>
 
-    <script>
-        // URL de la API
-        const API_URL = "http://localhost:8080/api/pdis/infoPdi";
+    <!-- Modal de confirmación -->
+    <div id="confirmModal">
+        <div id="confirmBox">
+            <h3>Confirma los datos</h3>
+            <pre id="confirmText"></pre>
+            <button id="confirmBtn">Aceptar</button>
+            <button id="cancelBtn">Cancelar</button>
+        </div>
+    </div>
 
+    <script>
+        const API_URL = "http://localhost:8080/api/pdis";
         const token = localStorage.getItem('jwtToken');
         const JWT_TOKEN = token ? `Bearer ${token}` : "";
 
-        async function crearPunto() {
-            const nombrePdi = document.getElementById("nombre").value;
-            const contenidoJson = document.getElementById("contenidoJson").value;
+        const pdiSelect = document.getElementById("pdiSelect");
+        const nombreInput = document.getElementById("nombre");
+        const contenidoInput = document.getElementById("contenidoJson");
+        const btnEnviar = document.getElementById("btnEnviar");
+        const confirmModal = document.getElementById("confirmModal");
+        const confirmText = document.getElementById("confirmText");
+        const confirmBtn = document.getElementById("confirmBtn");
+        const cancelBtn = document.getElementById("cancelBtn");
+        const mensajeElement = document.getElementById("mensaje");
 
-            if(!nombrePdi || !contenidoJson){
-                document.getElementById("mensaje").innerText = "Rellena todos los campos."
+        let pdIs = []; // Array para guardar PDIs existentes
+        let editingPdiId = null; // ID del PDI que estamos editando
+
+        // --------------------------------------------------
+        // 1. Cargar PDIs existentes
+        // --------------------------------------------------
+        async function cargarPDIs() {
+            try {
+                const resp = await fetch(API_URL, {
+                    headers: { "Authorization": JWT_TOKEN }
+                });
+                if (!resp.ok) throw new Error("Error al cargar PDIs");
+                pdIs = await resp.json();
+                pdiSelect.innerHTML = '<option value="">-- Crear nuevo PDI --</option>';
+                pdIs.forEach(pdi => {
+                    const option = document.createElement("option");
+                    option.value = pdi.idPdi;
+                    option.textContent = pdi.nombre;
+                    pdiSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error(error);
+                mensajeElement.style.color = "red";
+                mensajeElement.innerText = "No se pudieron cargar los PDIs existentes.";
+            }
+        }
+
+        // --------------------------------------------------
+        // 2. Seleccionar PDI (editar o crear nuevo)
+        // --------------------------------------------------
+        pdiSelect.addEventListener("change", () => {
+            const selectedId = pdiSelect.value;
+            if (selectedId) {
+                const pdi = pdIs.find(p => p.idPdi == selectedId);
+                nombreInput.value = pdi.nombre;
+                contenidoInput.value = pdi.contenidoJson;
+                editingPdiId = pdi.idPdi;
+            } else {
+                nombreInput.value = "";
+                contenidoInput.value = "";
+                editingPdiId = null;
+            }
+        });
+
+        // --------------------------------------------------
+        // 3. Mostrar modal de confirmación
+        // --------------------------------------------------
+        btnEnviar.addEventListener("click", () => {
+            const nombrePdi = nombreInput.value.trim();
+            const contenidoJson = contenidoInput.value.trim();
+
+            if (!nombrePdi || !contenidoJson) {
+                mensajeElement.style.color = "red";
+                mensajeElement.innerText = "Rellena todos los campos.";
                 return;
             }
 
-            // 1. Crear el objeto DTO para el backend
-            const pdiDTO = {
-                nombre: nombrePdi,
-                contenidoJson: contenidoJson
-            };
+            confirmText.textContent = JSON.stringify({ nombre: nombrePdi, contenidoJson }, null, 2);
+            confirmModal.style.display = "flex";
+        });
 
-            try{
-                const respuesta = await fetch(API_URL,{
-                    method: "POST",
+        // --------------------------------------------------
+        // 4. Confirmar envío (POST o PUT)
+        // --------------------------------------------------
+        confirmBtn.addEventListener("click", async () => {
+            const nombrePdi = nombreInput.value.trim();
+            const contenidoJson = contenidoInput.value.trim();
+
+            const pdiDTO = { nombre: nombrePdi, contenidoJson };
+            const url = editingPdiId ? `${API_URL}/${editingPdiId}` : API_URL;
+            const method = editingPdiId ? "PUT" : "POST";
+
+            try {
+                const respuesta = await fetch(url, {
+                    method,
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": JWT_TOKEN 
+                        "Authorization": JWT_TOKEN
                     },
                     body: JSON.stringify(pdiDTO)
                 });
 
-                const mensajeElement = document.getElementById("mensaje");
-
-                if(respuesta.ok){
-                    // Si la respuesta es 201 Created
+                if (respuesta.ok) {
                     const pdiCreado = await respuesta.json();
                     mensajeElement.style.color = "green";
-                    mensajeElement.innerHTML = `PDI creado con éxito. ID asignado: <b>${pdiCreado.idPdi}<b>`;
+                    mensajeElement.innerHTML = editingPdiId
+                        ? `PDI actualizado con éxito.`
+                        : `PDI creado con éxito. ID asignado: <b>${pdiCreado.idPdi}</b>`;
 
-                    // Limpiar formulario 
-                    document.getElementById("nombre").value = "";
-                    document.getElementById("contenidoJson").value = "";
-                } else{
-                    // Si la respuesta es un error
+                    // Recargar lista de PDIs para incluir cambios
+                    await cargarPDIs();
+
+                    // Limpiar formulario si era nuevo
+                    if (!editingPdiId) {
+                        nombreInput.value = "";
+                        contenidoInput.value = "";
+                    }
+
+                    editingPdiId = null;
+                    pdiSelect.value = ""; // Selección por defecto
+                } else {
                     const errorData = await respuesta.json();
                     mensajeElement.style.color = "red";
                     mensajeElement.innerHTML = `Error ${respuesta.status}: ${errorData.message || 'Error desconocido'}`;
                 }
-            }catch(error){
+            } catch (error) {
                 console.error('Error de red:', error);
-                document.getElementById("mensaje").style.color = "red";
-                document.getElementById("mensaje").innerText = "Error de conexión con el servidor.";
+                mensajeElement.style.color = "red";
+                mensajeElement.innerText = "Error de conexión con el servidor.";
+            } finally {
+                confirmModal.style.display = "none";
             }
-        
-        }
+        });
+
+        // --------------------------------------------------
+        // 5. Cancelar modal y cerrar al click fuera
+        // --------------------------------------------------
+        cancelBtn.addEventListener("click", () => confirmModal.style.display = "none");
+        confirmModal.addEventListener("click", (e) => {
+            if (e.target === confirmModal) confirmModal.style.display = "none";
+        });
+
+        // --------------------------------------------------
+        // Inicializar
+        // --------------------------------------------------
+        cargarPDIs();
     </script>
 </body>
 </html>
