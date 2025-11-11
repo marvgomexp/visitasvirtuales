@@ -1397,7 +1397,7 @@ dotlottie-wc{
 
      /* ==== PÁGINA CREAR PDIS ==== */
     .crear-pdis {
-      padding: 100px 40px 60px; 
+      padding: 80px 40px 60px; 
       background: #ededed;
       display: flex;
       flex-direction: column;
@@ -1418,11 +1418,12 @@ dotlottie-wc{
      /* Card principal del formulario */
      #formulario {
        background: #003594; 
-       padding: 40px 50px;
+       padding: 60px 50px;
        border-radius: 16px;
        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
        width: min(100%, 800px);
        text-align: left;
+       margin-top: 40px;
       }
 
       /* Etiquetas y campos */
@@ -1434,7 +1435,8 @@ dotlottie-wc{
       }
 
       #formulario input,
-      #formulario textarea {
+      #formulario textarea,
+      #formulario select {
         width: 100%;
         padding: 14px 12px;
         border: 2px solid #d9e2ff;
@@ -1450,7 +1452,8 @@ dotlottie-wc{
 
       /* Borde y sombra */
       #formulario input:focus,
-      #formulario textarea:focus {
+      #formulario textarea:focus,
+      #formulario select:focus {
         border-color: #FF5B41;
         box-shadow: 0 0 6px rgba(255, 91, 65, 0.4);
       }
@@ -1485,6 +1488,18 @@ dotlottie-wc{
         line-height: 1.4;
       }
 
+      /* Select de PDI existente */
+      #formulario select {
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%23003594' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 20px;
+}
+
       /* Responsive */
       @media (max-width: 1024px) {
        #formulario {
@@ -1510,3 +1525,83 @@ dotlottie-wc{
          font-size: 15px;
       }
      }
+
+/* Modal de confirmación PDIS */
+#confirmModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: modalFadeIn 0.3s;
+}
+
+#confirmBox {
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s;
+}
+
+#confirmBox h3 {
+    margin-top: 0;
+    color: #003594;
+}
+
+#confirmBox pre {
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    max-height: 200px;
+}
+
+#confirmBox button {
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#confirmBtn {
+    background-color: #003594;
+    color: #fff;
+}
+
+#confirmBtn:hover {
+    background-color: #FF5B41;
+}
+
+#cancelBtn {
+    background-color: #f44336;
+    color: #fff;
+}
+
+#cancelBtn:hover {
+    background-color: #d32f2f;
+}
+
+/* Animaciones */
+@keyframes modalFadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes slideIn {
+    from {transform: translateY(-20px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+
+
