@@ -14,17 +14,16 @@
 <body>
   <header>
     <div class="logo">
-      <a href="#" class="logo-link">
-        <img src="/visitasvirtuales_frontend/images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
-        <span id="titulo">VisitaDAVANTE</span>
-      </a>
+    <a href="/visitasvirtuales_frontend/index.html" class="logo-link">
+    <img src="/visitasvirtuales_frontend/images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
+    <span id="titulo">VisitaDAVANTE</span>
+    </a>
     </div>
 
     <div class="container__menu">
       <div class="menu">
         <i class="fa-solid fa-bars" id="movil_menu"></i>
         <div id="back_menu"></div>
-
         <nav id="nav">
           <ul>
             <li><a href="#" data-page="gestionPermisos.html">Gestión de usuarios</a></li>
@@ -33,7 +32,7 @@
             <li><a href="#" data-page="#">Editar Contenido Web</a></li>
           </ul>
         </nav>
-
+      </div>
         <div class="botones-header">
           <div class="dropdown">
             <div class="user-name">usuarioejemplo</div>
@@ -50,9 +49,7 @@
             </div>
           </div>
         </div>
-
       </div>
-    </div>
   </header>
 
   <!-- Aquí se cargará el contenido dinámico -->
@@ -61,7 +58,7 @@
     <p>Selecciona una opción del menú para comenzar.</p>
   </main>
 
-  <script>
+ <script>
   // Selecciona enlaces del menú y contenedor principal
   const links = document.querySelectorAll("nav a[data-page]");
   const contenido = document.getElementById("contenido");
@@ -82,6 +79,7 @@
     iframe.style.width = "100%";
     iframe.style.height = "80vh"; 
     iframe.style.border = "none";
+    iframe.style.alignContent = "center";
 
     // Reemplazar contenido anterior con el iframe
     contenido.innerHTML = "";
@@ -95,9 +93,12 @@
       const archivo = link.getAttribute("data-page");
       cargarPagina(archivo);
 
-      // Actualiza el estado del menú activo
-      links.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
+      // Quita el ID 'selected' de cualquier enlace anterior
+      document.querySelectorAll('#selected').forEach(el => el.removeAttribute('id'));
+
+      // Asigna el ID 'selected' al enlace clicado
+      link.id = 'selected';
     });
   });
 </script>
+

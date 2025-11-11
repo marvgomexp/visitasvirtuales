@@ -30,4 +30,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(name = "rol", nullable = false)
     private RolUsuario rol; // Se mapea el ENUM de SQL a un ENUM de Java
+
+    // Notificacion al Admin
+    private boolean nuevoRegistroVisto = false;
 }

@@ -3,20 +3,26 @@ package com.ies.tour.visitasvirtuales_backend.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.List;
+
 import com.ies.tour.visitasvirtuales_backend.security.jwt.AuthEntryPointJwt;
 import com.ies.tour.visitasvirtuales_backend.security.jwt.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity // Habilita la seguridad web de Spring
+@EnableMethodSecurity(prePostEnabled = true) // Activa la funcionalidad para usar @PreAuthorize y @PostAuthorize
 public class SecurityConfig {
 
         @Autowired
@@ -29,6 +35,7 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
+                                .cors(Customizer.withDefaults())
                                 .csrf(csrf -> csrf.disable()) // Deshabilita CSRF
                                 .httpBasic(httpBasic -> httpBasic.disable()) // Deshabilita la autenticación básica de
                                                                              // HTTP por defecto
@@ -63,6 +70,24 @@ public class SecurityConfig {
         public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
                         throws Exception {
                 return authenticationConfiguration.getAuthenticationManager();
+        }
+
+        // 4. Bean que define la politica de CORS
+        @Bean
+        public CorsConfigurationSource corsConfigurationSource() {
+                CorsConfiguration configuration = new CorsConfiguration();
+                // Permitir el origen 'null' para archivos locales
+                configuration.setAllowedOrigins(List.of("http://localhost:8080", "null"));
+
+                configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                configuration.setAllowedHeaders(List.of("*"));
+                configuration.setAllowCredentials(true);
+
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                // Aplicar la política CORS a todas las rutas API
+                source.registerCorsConfiguration("/api/**", configuration);
+
+                return source;
         }
 
 }

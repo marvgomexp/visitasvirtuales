@@ -1,7 +1,6 @@
 package com.ies.tour.visitasvirtuales_backend.repository;
 
 import com.ies.tour.visitasvirtuales_backend.model.Centros;
-import com.ies.tour.visitasvirtuales_backend.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

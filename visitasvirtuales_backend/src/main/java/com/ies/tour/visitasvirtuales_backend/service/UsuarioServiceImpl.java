@@ -1,5 +1,6 @@
 package com.ies.tour.visitasvirtuales_backend.service;
 
+import com.ies.tour.visitasvirtuales_backend.model.RolUsuario;
 import com.ies.tour.visitasvirtuales_backend.model.Usuario;
 import com.ies.tour.visitasvirtuales_backend.repository.UsuarioRepository;
 
@@ -33,7 +34,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
     // LÓGICA DE NEGOCIO
     // Usamos el método definido en el repositorio para buscar por email
     @Override
-    @Transactional(readOnly = true) // Operaciones de solo lectura
+    @Transactional(readOnly = true)
     public Usuario findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
@@ -49,11 +50,53 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<Usuario> findAll() {
+        return usuarioRepository.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findById(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con ID: " + id));
+    }
+
+    @Override
+    @Transactional // Esta operación modifica la BD
+    public Usuario updateRol(String email, String nuevoRol) {
+        Usuario usuario = findByEmail(email);
+
+        // 1. Convertir el String (ej: "ADMINISTRADOR") a la enumeración RolUsuario
+        RolUsuario rol;
+        try {
+            rol = RolUsuario.valueOf(nuevoRol.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Rol inválido: " + nuevoRol);
+        }
+
+        // 2. Asignar el nuevo rol y guardar
+        usuario.setRol(rol);
+        return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    @Transactional
+    public void delete(String email) {
+        // 1. Buscar el usuario por email
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado para borrar con email: " + email);
+        }
+        // 2. Ejecutar el borrado usando el objeto Usuario
+        usuarioRepository.delete(usuario);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByEmail(email);
 
         if (usuario == null) {
-            // Spring Security lanza esta excepción si no encuentra al usuario
             throw new UsernameNotFoundException("Usuario no encontrado con email: " + email);
         }
 
