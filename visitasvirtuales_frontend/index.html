@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VisitaDAVANTE</title>
     <link rel="stylesheet" href="/visitasvirtuales_frontend/css/styles.css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/0a4e7dfe84.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0a4e7dfe84.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -25,30 +25,36 @@
                 <i class="fa-solid fa-bars" id="movil_menu"></i>
                 <div id="back_menu"></div> <!-- Para que la web se oscurezca al abrir menú lateral en móvil-->
             <nav id="nav">
-            <img src="/visitasvirtuales_frontend/images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
-            <ul>
-            <li><a href="/visitasvirtuales_frontend/index.html" id="selected">Inicio</a></li>
-            <li><a href="/visitasvirtuales_frontend/centros.html">Nuestros Centros</a></li>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
+                <img src="/visitasvirtuales_frontend/images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
+                <ul>
+                <li><a href="/visitasvirtuales_frontend/index.html" id="selected">Inicio</a></li>
+                <li><a href="/visitasvirtuales_frontend/centros.html">Nuestros Centros</a></li>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+            </div>
+            <div class="botones-header">
+                <div id="auth-buttons">
+                    <div class="dropdown">
+                        <button class="boton2">Iniciar sesión</button>
+                        <div class="dropdown-content">
+                            <form id="loginForm">
+                                <input type="email" id="loginEmail" placeholder="Usuario">
+                                <input type="password" id="loginPassword" placeholder="Contraseña">
+                                <a href="#" class="forget-pass">He olvidado mi contraseña</a>
+                                <p id="loginMessage" style="color: red; font-size: 0.9em; margin-top: 5px;"></p>
+                                <button type="submit">Entrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <a href="/visitasvirtuales_frontend/registerForm.html" class="boton">Registrarse</a>
+                </div>
+                <div id="user-session" style="display: none;"></div>
+            </div>
         </div>
-        <div class="botones-header">
-        <div class="dropdown">
-  <button class="boton2">Iniciar sesión</button>
-  <div class="dropdown-content">
-    <form>
-      <input type="text" placeholder="Usuario">
-      <input type="password" placeholder="Contraseña">
-      <a href="#" class="forget-pass">He olvidado mi contraseña</a>
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-</div>
-        <a href="/visitasvirtuales_frontend/registerForm.html" class="boton">Registrarse</a>
-        </div>
-</div>
+        
+            
     </header>
 
     <!-- Sección principal -->
@@ -128,6 +134,7 @@
             </div>
         </div>
     </footer>
+    <script src="/visitasvirtuales_frontend/js/login.js" defer></script>
    <script src="/visitasvirtuales_frontend/js/side-menu.js"></script>
 </body>
 </html>
