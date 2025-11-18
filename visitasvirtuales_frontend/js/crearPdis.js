@@ -23,7 +23,7 @@ const mensajeElement = document.getElementById("mensaje");
 let modo = "modificar"; // por defecto
 let editingPdiId = null;
 
-// Cache de PDIs por centro para no recargar innecesariamente
+// Cache de PDIs por centro
 const pdIsPorCentro = {};
 
 // --------------------
@@ -100,18 +100,15 @@ async function cargarCentros() {
 async function cargarPDIsPorCentro(idCentro) {
   try {
     let pdIs = pdIsPorCentro[idCentro];
-
-    // Si no están en cache, llamamos al backend
     if (!pdIs) {
       const resp = await fetch(`${API_URL}/centro/${idCentro}`, {
         headers: { Authorization: JWT_TOKEN }
       });
       if (!resp.ok) throw new Error("Error al cargar PDIs del centro");
       pdIs = await resp.json();
-      pdIsPorCentro[idCentro] = pdIs; // guardamos en cache
+      pdIsPorCentro[idCentro] = pdIs;
     }
 
-    // Limpiar y llenar select
     pdiSelect.innerHTML = '<option value="">-- Selecciona el PDI --</option>';
     pdIs.forEach(p => {
       const option = document.createElement("option");
@@ -133,20 +130,19 @@ async function cargarPDIsPorCentro(idCentro) {
 // EVENTO CAMBIO DE CENTRO
 // --------------------
 centroSelect.addEventListener("change", () => {
-  if (modo !== "modificar") return;
-  const idCentro = centroSelect.value;
-  if (idCentro) {
-    cargarPDIsPorCentro(idCentro);
-  } else {
-    limpiarFormulario();
-  }
   limpiarMensaje();
+  if (modo === "modificar") {
+    const idCentro = centroSelect.value;
+    if (idCentro) cargarPDIsPorCentro(idCentro);
+    else limpiarFormulario();
+  }
 });
 
 // --------------------
 // EVENTO SELECCIONAR PDI
 // --------------------
 pdiSelect.addEventListener("change", () => {
+  limpiarMensaje();
   const selectedId = pdiSelect.value;
   if (selectedId) {
     const option = pdiSelect.querySelector(`option[value="${selectedId}"]`);
@@ -156,7 +152,6 @@ pdiSelect.addEventListener("change", () => {
     contenidoInput.value = "";
     editingPdiId = null;
   }
-  limpiarMensaje();
 });
 
 // --------------------
@@ -165,22 +160,24 @@ pdiSelect.addEventListener("change", () => {
 btnEnviar.addEventListener("click", () => {
   const nombrePdi = nombreInput.value.trim();
   const contenidoJson = contenidoInput.value.trim();
+  const idCentro = centroSelect.value;
 
-  if ((modo === "crear" && !nombrePdi) || !contenidoJson) {
+  if ((modo === "crear" && (!nombrePdi || !idCentro)) || !contenidoJson) {
     mensajeElement.style.color = "red";
-    mensajeElement.innerText = "Rellena todos los campos.";
+    mensajeElement.innerText = "Rellena todos los campos y selecciona un centro.";
     return;
   }
 
-  confirmText.textContent = JSON.stringify({ nombre: nombrePdi, contenidoJson }, null, 2);
+  confirmText.textContent = JSON.stringify({ nombre: nombrePdi, contenidoJson, idCentro }, null, 2);
   confirmModal.style.display = "flex";
 });
 
 confirmBtn.addEventListener("click", async () => {
   const nombrePdi = nombreInput.value.trim();
   const contenidoJson = contenidoInput.value.trim();
+  const idCentro = centroSelect.value;
 
-  const pdiDTO = { nombre: nombrePdi, contenidoJson };
+  const pdiDTO = { nombre: nombrePdi, contenidoJson, idCentro };
   const url = editingPdiId ? `${API_URL}/${editingPdiId}` : API_URL;
   const method = editingPdiId ? "PUT" : "POST";
 
@@ -198,10 +195,9 @@ confirmBtn.addEventListener("click", async () => {
         ? `PDI actualizado con éxito.`
         : `PDI creado con éxito. ID asignado: <b>${pdiCreado.idPdi}</b>`;
 
-      // Recargar PDIs del centro actual si estamos en modificar
-      if (modo === "modificar" && centroSelect.value) {
-        pdIsPorCentro[centroSelect.value] = null; // limpiar cache
-        await cargarPDIsPorCentro(centroSelect.value);
+      if (modo === "modificar" && idCentro) {
+        pdIsPorCentro[idCentro] = null; // limpiar cache
+        await cargarPDIsPorCentro(idCentro);
       }
 
       limpiarFormulario();
