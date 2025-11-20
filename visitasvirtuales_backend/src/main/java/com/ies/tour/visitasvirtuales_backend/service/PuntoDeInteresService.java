@@ -13,11 +13,17 @@ public interface PuntoDeInteresService {
     // Obtener un PDI por ID
     Optional<PuntoDeInteres> findById(Integer id);
 
-    PuntoDeInteres saveFromDto(PuntoDeInteresDTO pdiDTO);
+    PuntoDeInteres saveFromDto(PuntoDeInteresDTO pdiDTO, Integer idCentros);
+
+    // Método de consulta para el desplegable del frontend
+    List<PuntoDeInteres> findByCentroId(Integer idCentros);
 
     // Eliminar un PDI por ID
     void deleteById(Integer id);
 
     // Mapea el DTO a la entidad
     PuntoDeInteres convertirADto(PuntoDeInteresDTO pdiDTO);
+
+    // editar pdis
+    PuntoDeInteres updatePdi(Integer id, PuntoDeInteresDTO pdiDTO, Integer idCentros);
 }
