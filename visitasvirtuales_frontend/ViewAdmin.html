@@ -14,7 +14,7 @@
 <body>
   <header>
     <div class="logo">
-    <a href="/visitasvirtuales_frontend/index.html" class="logo-link">
+    <a href="/visitasvirtuales_frontend/ViewAdmin.html" class="logo-link">
     <img src="/visitasvirtuales_frontend/images/dav_white.png" alt="Logo DAVANTE" class="logo-img">
     <span id="titulo">VisitaDAVANTE</span>
     </a>
@@ -26,16 +26,16 @@
         <div id="back_menu"></div>
         <nav id="nav">
           <ul>
-            <li><a href="#" data-page="gestionPermisos.html">Gestión de usuarios</a></li>
-            <li><a href="#" data-page="#">Gestión de centros</a></li>
-            <li><a href="#" data-page="crearPdis.html">Editar Puntos de Interés</a></li>
-            <li><a href="#" data-page="#">Editar Contenido Web</a></li>
+            <li><a href="#" data-rol="ADMINISTRADOR" data-page="gestionPermisos.html">Gestión de usuarios</a></li>
+            <li><a href="#" data-rol="ADMINISTRADOR" data-page="#">Gestión de centros</a></li>
+            <li><a href="#" data-rol="ADMINISTRADOR, PROFESOR" data-page="crearPdis.html">Gestión de Puntos de Interés</a></li>
+            <li><a href="#" data-rol="ADMINISTRADOR, PROFESOR" data-page="#">Editar Contenido Web</a></li>
           </ul>
         </nav>
       </div>
         <div class="botones-header">
           <div class="dropdown">
-            <div class="user-name">usuarioejemplo</div>
+            <div class="user-name">Administrador</div>
             <div class="dropdown-content">
               <div class="profile-img">
                 <img src="/visitasvirtuales_frontend/images/avatar-placeholder.jpg" alt="Foto de perfil" class="profile-img">
@@ -101,4 +101,5 @@
     });
   });
 </script>
+<script src="js/crearPdis.js"></script>
 
