@@ -548,211 +548,212 @@ button, input, select, textarea{
 
 /* PÁGINA DE REGISTRO */
 
-       form {
-           padding: 0;
-           width: 100%;
-           text-align: center;
-           background: transparent;
-        }
-       form h2{
-           font-size: 25px;
-           color: #444;
-           margin-bottom: 35px;
-       }
+  form {
+      padding: 0;
+      width: 100%;
+      text-align: center;
+      background: transparent;
+   }
+  form h2{
+      font-size: 25px;
+      color: #444;
+      margin-bottom: 35px;
+      text-align: center;
+}
 
-       .formulario-registro {
-           display: flex;
-           justify-content: center;
-           padding: 120px 20px;
-       }
+  .formulario-registro {
+      display: flex;
+      justify-content: center;
+      padding: 120px 20px;
+}
 
-       .form-container {
-           background-color: #fff;
-           border-radius: 10px;
-           padding: 40px 40px;
-           box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-           max-width: 600px;
-           width: 100%;
-       }
-       
-       #register-form {
-           padding: 0;
-           width: 100%;
-       }
-       
-       
-       .user-type {
-           margin-bottom: 40px;
-       }
-       .user-type button.activo {
-           background: #FF5B41;
-           box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-           font-weight: 400;
-           color: #ffffff;
-           border-radius: 10px;
-           padding: 5px 10px;
-           font-size: 14px;
-           text-decoration: none;
-           border-style: none;
-       }
-       .user-type button {
-           background: #A0A0A0;
-           box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-           font-weight: 400;
-           color: #ffffff;
-           border-radius: 10px;
-           padding: 5px 10px;
-           font-size: 14px;
-           text-decoration: none;
-           border-style: none;
-       }
-       form a{
-           display: block;
-           text-decoration: none;
-           font-size: 16px;
-           color: #A0A0A0;
-           
-       }
-       form a:hover{
-           color:#444;
-       }
-       .input-container{
-           position: relative;
-           width: 100%;
-       }
-       .input-container.col-1 {
-           grid-column: 1;
-       }
-       .input-container.col-2 {
-           grid-column: 2;
-       }
-       .input-container > input{
-           padding: 15px 12px 15px 12px;
-           width: 100%;
-           margin-bottom: 15px;
-           border-radius: 8px;
-           background-color: transparent;
-           border: 2px solid #CBCBCB;
-           font-size: 16px;
-           outline: none;
-           color: #444;
-       }
-       .input-container select {
-           padding: 15px 12px;
-           width: 100%;
-           margin-bottom: 15px;
-           border-radius: 8px;
-           background-color: transparent;
-           border: 2px solid #CBCBCB;
-           font-size: 16px;
-           outline: none;
-           color: #A0A0A0;
-           appearance: none;
-           -webkit-appearance: none;
-           -moz-appearance: none;
-           background-image: url("data:image/svg+xml;utf8,<svg fill='%23003594' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-           background-repeat: no-repeat;
-           background-position: right 12px center;
-           background-size: 20px;
-           cursor: pointer;
-       }
-       ::placeholder{
-           color: #A0A0A0;
-           font-size: 16px;
-       }
-       .btn-submit{
-           background-color: #0234ab;
-           color: #ffffff;
-           border-radius: 35px;
-           padding: 10px 20px;
-           font-size: 16px;
-           text-decoration: none;
-           border-style: none;
-       }
-       .btn-submit:hover{
-           cursor: pointer;
-           color: #F5F5F5;
-           background-color: #FF5B41;
-       }
-       .input-submit {
-           margin-top: 20px;
-       }
-       .input-submit,
-       .terminos {
-           grid-column: span 2;
-           display: flex;
-           justify-content: center;
-           line-height: 50px;
-       }
-       /* Diseño responsive */
-       @media (max-width: 720px) {
-           .input-group {
-               grid-template-columns: 1fr;
-           }
-           .input-container.full {
-               grid-column: span 1;
-           }
-       }
- /*-- Aquí empieza CSS de virtualview.html --*/
-       #logo-cargando {
-           position: absolute;
-           top: 50%;
-           left: 50%;
-           transform: translate(-50%, -50%);
-           z-index: 1000;
-       }
-       #webgl-container {
-           width: 100%;
-           height: 100%;
-       }
-       #virtual-view {
-           width: 100%;
-           height: 100%;
-           opacity: 0;
-           /* invisible pero renderizable */
-           pointer-events: none;
-       }
-  #contenedorUnity {
-       min-height: calc(100vh - 80px - 120px);
-       padding-top: 80px;    
-       box-sizing: border-box;
+  .form-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 40px 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+  }   
+  #register-form {
+      padding: 0;
+      width: 100%;
+  }      
+  form a{
+      display: block;
+      text-decoration: none;
+      font-size: 16px;
+      color: #A0A0A0;
+      
+  }   
+  form a:hover{
+      color:#444;
+}
+
+  .input-container{
+      position: relative;
+      width: 100%;
+}
+
+  .input-container.col-1 {
+      grid-column: 1;
+}
+
+  .input-container.col-2 {
+      grid-column: 2;
+}
+
+  .input-container > input{
+      padding: 15px 12px 15px 12px;
+      width: 100%;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      background-color: transparent;
+      border: 2px solid #CBCBCB;
+      font-size: 16px;
+      outline: none;
+      color: #444;
+}
+
+  .input-container select {
+      padding: 15px 12px;
+      width: 100%;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      background-color: transparent;
+      border: 2px solid #CBCBCB;
+      font-size: 16px;
+      outline: none;
+      color: #A0A0A0;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='%23003594' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+      cursor: pointer;
+}
+
+  ::placeholder{
+      color: #A0A0A0;
+      font-size: 16px;
+}
+
+  .btn-submit{
+      background-color: #0234ab;
+      color: #ffffff;
+      border-radius: 35px;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      border-style: none;
+}
+
+  .btn-submit:hover{
+      cursor: pointer;
+      color: #F5F5F5;
+      background-color: #FF5B41;
+}
+
+  .input-submit {
+      margin-top: 20px;
+}
+
+  .input-submit,
+  .terminos {
+      grid-column: span 2;
+      display: flex;
+      justify-content: center;
+      line-height: 50px;
+}
+
+  .input-group {
+       display: grid;
+       grid-template-columns: repeat(2, 1fr);
+       gap: 20px;
+}
+
+  /* Diseño responsive */
+  @media (max-width: 720px) {
+      .input-group {
+          grid-template-columns: 1fr;
+      }
+      .input-container.full {
+          grid-column: span 1;
+      }
   }
-       .no-webgl-message {
-           display: none;
-           position: absolute;
-           top: 50%;
-           left: 50%;
-           transform: translate(-50%, -50%);
-           text-align: center;
-           color: black;
-           background-color: #d9e2ff;
-           padding: 20px;
-           border-radius: 8px;
-       }
+
+ /*-- Aquí empieza CSS de virtualview.html --*/
+ 
+     #logo-cargando {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         z-index: 1000;
+     }
+
+     #webgl-container {
+         width: 100%;
+         height: 100%;
+     }
+
+     #virtual-view {
+         width: 100%;
+         height: 100%;
+         opacity: 0;
+         /* invisible pero renderizable */
+         pointer-events: none;
+     }
+
+      #contenedorUnity {
+         min-height: calc(100vh - 80px - 120px);
+         padding-top: 80px;    
+         box-sizing: border-box;
+     }
+
+      .no-webgl-message {
+         display: none;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         text-align: center;
+         color: black;
+         background-color: #d9e2ff;
+         padding: 20px;
+         border-radius: 8px;
+      }
+
        #logo-dav-loading {
-           width: 150px;
-           margin-top: 20px;
-       }
-       /*-- Botón de pantalla completa --*/
-       .fullscreen-btn {
-           position: absolute;
-           bottom: 25px;
-           right: 25px;
-           background: rgba(0, 53, 148, 0.9);
-           color: #fff;
-           border: none;
-           border-radius: 8px;
-           padding: 10px 16px;
-           font-size: 14px;
-           font-weight: 500;
-           transition: background 0.3s;
-           z-index: 999;
-       }
-       .fullscreen-btn:hover {
-           background: #FF5B41;
-       }
-dotlottie-wc{
-    width: 800px;}
+         width: 150px;
+         margin-top: 20px;
+     }
+
+     /*-- Botón de pantalla completa --*/
+     .fullscreen-btn {
+         position: absolute;
+         bottom: 25px;
+         right: 25px;
+         background: rgba(0, 53, 148, 0.9);
+         color: #fff;
+         border: none;
+         border-radius: 8px;
+         padding: 10px 16px;
+         font-size: 14px;
+         font-weight: 500;
+         transition: background 0.3s;
+         z-index: 999;
+     }
+
+     .fullscreen-btn:hover {
+         background: #FF5B41;
+     }
+
+      dtlottie-wc{
+          width: 800px;
+      }
 
 /*-- Aquí termina CSS de virtualview.html --*/
 

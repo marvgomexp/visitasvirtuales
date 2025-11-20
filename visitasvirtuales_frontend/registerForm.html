@@ -35,20 +35,24 @@
         </nav>
         </div>
         <div class="botones-header">
-        <div class="dropdown">
-  <button class="boton2">Iniciar sesión</button>
-  <div class="dropdown-content">
-    <form>
-      <input type="text" placeholder="Usuario">
-      <input type="password" placeholder="Contraseña">
-      <a href="#" class="forget-pass">He olvidado mi contraseña</a>
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-</div>
-        <a href="/visitasvirtuales_frontend/registerForm.html" class="boton">Registrarse</a>
+        <div id="auth-buttons">
+                    <div class="dropdown">
+                        <button class="boton2">Iniciar sesión</button>
+                        <div class="dropdown-content">
+                            <form id="loginForm">
+                                <input type="email" id="loginEmail" placeholder="Usuario">
+                                <input type="password" id="loginPassword" placeholder="Contraseña">
+                                <a href="#" class="forget-pass">He olvidado mi contraseña</a>
+                                <p id="loginMessage" style="color: red; font-size: 0.9em; margin-top: 5px;"></p>
+                                <button type="submit">Entrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <a href="/visitasvirtuales_frontend/registerForm.html" class="boton">Registrarse</a>
+                </div>
+                <div id="user-session" style="display: none;"></div>
+            </div>
         </div>
-</div>
     </header>
 
     <!-- Formulario -->
@@ -57,11 +61,6 @@
     <div class="form-container">
     <form id="register-form" action="#" method="post" autocomplete="off">
         <h2>Crear cuenta</h2>
-            <!-- Selector de rol -->
-    <div class="user-type">
-      <button id="btnAlumno" class="activo" type="button">Estudiante</button>
-      <button id="btnDocente" type="button">Docente</button>
-    </div>
         <div class="input-group">
             <div class="input-container">
                 <input type="text" name="nombre" placeholder="Nombre completo *" required> 
@@ -83,9 +82,6 @@
                  
                 </select>
             </div>
-
-            <!-- Formulario alumno -->
-            <div id="camposAlumno">
             <div class="input-container">
                 <select id="centro" name="centro" required>
                   <option value="">Centro de estudios *</option>
@@ -103,37 +99,6 @@
                   <option value="">Seleccionar titulación *</option>
                 </select>
             </div>
-            </div>
-            <!--Fin formulario alumno-->
-
-            <!-- Formulario docente -->
-             <div id="camposDocente" style="display: none;">
-                <div class="input-container">
-                <select id="titulacion" name="titulacion" required>
-                  <option value="">Titulaciones *</option>
-                  <option value="aux-enf">Auxiliar de Enfermería</option>
-                  <option value="farmacia">Farmacia y Parafarmacia</option>
-                  <option value="emerg">Emergencias Sanitarias</option>
-                  <option value="teleco">Instalador de Telecomunicaciones</option>
-                  <option value="electric">Instalaciones Eléctricas y Automáticas</option>
-                  <option value="tapsd">Atención a Personas en Situación de Dependencia</option>
-                </select>
-            </div>
-
-            <div class="input-container">
-                <select id="modulos" name="modulos" required>
-                  <option value="">Módulos que imparte</option>
-                  <option value="mod1">Módulo 1</option>
-                  <option value="mod2">Módulo 2</option>
-                  <option value="mod3">Módulo 3</option>
-                  <option value="mod4">Módulo 4</option>
-                  <option value="mod5">Módulo 5</option>
-                </select>
-            </div>
-             </div>
-            
-                <!--Fin formulario docente-->
-
                 <div class="input-container">
                 <input type="text" name="contraseña" placeholder="Contraseña *" required> 
             </div> 
