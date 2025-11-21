@@ -27,7 +27,9 @@ let currentMode = 'MODIFICAR'; // Toggle para Crear  Modificar
 
 // Seleccionar elementos según el rol
 function seleccionRoles() {
-    const rol = localStorage.getItem("userRole"); // rol del usuario
+    let rol = localStorage.getItem("userRole"); // rol del usuario
+    if (!rol) return;
+    
     const elementos = document.querySelectorAll('[data-rol]'); // todos los elementos con data-rol
 
     elementos.forEach(el => {
