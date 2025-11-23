@@ -83,7 +83,7 @@ public class PuntoDeInteresServiceImpl implements PuntoDeInteresService {
                 .orElseThrow(() -> new ResourceNotFoundException("Centro no encontrado con ID: " + idCentro));
         // Aplicar los cambios del DTO
         pdiExistente.setNombre(pdiDTO.getNombre());
-        pdiExistente.setDescripcion(pdiDTO.getContenidoJson());
+        pdiExistente.setContenidoJson(pdiDTO.getContenidoJson());
         pdiExistente.setCentro(centro);
 
         // Guardar los cambios
@@ -108,7 +108,7 @@ public class PuntoDeInteresServiceImpl implements PuntoDeInteresService {
         PuntoDeInteres pdi = new PuntoDeInteres();
         pdi.setNombre(pdiDTO.getNombre());
         // El JSON se guarda en descripcion
-        pdi.setDescripcion(pdiDTO.getContenidoJson());
+        pdi.setContenidoJson(pdiDTO.getContenidoJson());
 
         // 4. Asignar la relación (Clave Foránea)
         pdi.setCreador(creador);
