@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import java.util.Set; // Para la relación OneToMany
+import java.util.Set;
+import jakarta.persistence.FetchType;
 
 @Entity
 @Table(name = "Centros")
@@ -32,4 +33,7 @@ public class Centros {
 
     @OneToMany(mappedBy = "centro", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<VisitaVirtual> visitas;
+
+    @OneToMany(mappedBy = "centro", fetch = FetchType.EAGER)
+    private Set<PuntoDeInteres> puntoDeInteres;
 }

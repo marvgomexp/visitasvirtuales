@@ -1,5 +1,7 @@
 package com.ies.tour.visitasvirtuales_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,8 +14,13 @@ public class PuntoDeInteres {
     @Column(name = "id_pdi")
     private Long idPdi;
 
+    @ManyToOne
+    @JoinColumn(name = "id_centros", nullable = false)
+    @JsonIgnore
+    private Centros centro;
+
     // Usuario creador
-    @ManyToOne // Un usuario puede crear muchos PDIs
+    @ManyToOne
     @JoinColumn(name = "id_usuario_creador", nullable = false)
     private Usuario creador;
 
@@ -23,6 +30,6 @@ public class PuntoDeInteres {
     // Campo donde se almacenará el JSON
     @Lob // Para campos TEXT en MySQL
     @Column(name = "descripcion")
-    private String descripcion;
+    private String contenidoJson;
 
 }
