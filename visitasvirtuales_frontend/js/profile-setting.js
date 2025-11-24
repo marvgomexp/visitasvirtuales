@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p class="nota">JPG, PNG o GIF (máx. X MB)</p>
     </div>
 
-    <div class="form-container">
+    <div id="form-container">
       <h3>Configuración de perfil</h3>
       <p>Edita tu información personal y de contacto</p>
 
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // CONTENIDO DE CADA SECCIÓN 
   const notifContent = `
-    <div class="form-container full">
+    <div id="form-container full">
       <div id="confiNotif">
         <h2>Preferencias de Notificaciones</h2>
         <p class="subtitulo">Selecciona qué actualizaciones quieres recibir</p>
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
 
   const passwordContent = `
-    <div class="form-container full">
+    <div id="form-container">
       <h3>Cambiar contraseña</h3>
       <p>Introduce tu contraseña actual y la nueva para actualizarla</p>
       <form id="change-password-form">
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="nota">JPG, PNG o GIF (máx. X MB)</p>
           </div>
 
-          <div class="form-container">
+          <div id="form-container">
             <h3>Configuración de perfil</h3>
             <p>Edita tu información personal y de contacto</p>
 
