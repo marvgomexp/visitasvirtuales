@@ -21,7 +21,8 @@ function checkLoginStatus(){
     const userSessionContainer = document.getElementById('user-session');
 
     const ADMIN_ROLE = "ROLE_ADMINISTRADOR";
-    const PROFESOR_ROLE = "ROLE_PROFESOR"
+    const PROFESOR_ROLE = "ROLE_PROFESOR";
+    const ALUM_ROLE = "ROLE_ALUMNO";
 
     if (token && userName && authButtonsContainer && userSessionContainer) {
         // 1. Ocultar los botones de Login/Registro
