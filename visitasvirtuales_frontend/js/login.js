@@ -21,6 +21,8 @@ function checkLoginStatus(){
     const userSessionContainer = document.getElementById('user-session');
 
     const ADMIN_ROLE = "ROLE_ADMINISTRADOR";
+    const PROFESOR_ROLE = "ROLE_PROFESOR";
+    const ALUM_ROLE = "ROLE_ALUMNO";
 
     if (token && userName && authButtonsContainer && userSessionContainer) {
         // 1. Ocultar los botones de Login/Registro
@@ -32,6 +34,10 @@ function checkLoginStatus(){
         if(userRole === ADMIN_ROLE){
             // Si el rol coincide con el administrador, crea el botón
             adminPanelButton = `<a href="ViewAdmin.html" class="boton2" style="margin-right: 10px;">Panel de Admin</a>`;
+        } else if(userRole === PROFESOR_ROLE){
+            // Si el rol coincide con el profesor, crea el botón que lleva a la misma página que el administrador.
+            // En ViewAdmin.html están añadidos los roles para que se muestre sólo lo que debe mostrarse al rol de profesor
+            adminPanelButton = `<a href="ViewAdmin.html" class="boton2" style="margin-right: 10px;">Panel de Profesor</a>`;
         }
         // Construye el HTML de la sesión
         userSessionContainer.innerHTML = `
