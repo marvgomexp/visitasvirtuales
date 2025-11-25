@@ -10,7 +10,6 @@ const btnModificar = document.getElementById("btnModificar")
 const labelPDI = document.getElementById("labelPDI");
 const centroSelect = document.getElementById("centroSelect");
 const pdiSelect = document.getElementById("pdiSelect");
-const nombreInput = document.getElementById("nombrePDI");
 const contenidoInput = document.getElementById("contenidoJson");
 const btnEnviar = document.getElementById("btnEnviar");
 const confirmModal = document.getElementById("confirmModal");
@@ -58,14 +57,12 @@ function showMessage(message, isSuccess = true) {
 btnModificar.addEventListener("click", ()=>{
     btnModificar.classList.add('activo');
     btnCrear.classList.remove('activo')
-    nombreInput.style.display='none';
     pdiSelect.style.display='block';
     labelPDI.setAttribute("for", "pdiSelect");
     labelPDI.textContent = "Selecciona un PDI a modificar";
     currentMode = 'MODIFICAR';
     
     // Asegurar el reset de inputs y forzar re-lectura del centro
-    nombreInput.value = "";
     contenidoInput.value = "";
     pdiSelect.value = "";
     editingPdiId = null;
@@ -74,15 +71,13 @@ btnModificar.addEventListener("click", ()=>{
 
 btnCrear.addEventListener("click", ()=>{
     btnCrear.classList.add('activo');
-    btnModificar.classList.remove('activo')
-    nombreInput.style.display='block';
-    pdiSelect.style.display='none';
-    labelPDI.setAttribute("for", "nombrePDI");
-    labelPDI.textContent = "Nombre del nuevo PDI";
+    btnModificar.classList.remove('activo');
+    pdiSelect.style.display = 'block';
+    labelPDI.setAttribute("for", "pdiSelect");
+    labelPDI.textContent = "Selecciona el nombre del PDI a crear";
     currentMode = 'CREAR';
 
     // Asegurar el reset de inputs y forzar re-lectura del centro
-    nombreInput.value = "";
     contenidoInput.value = "";
     pdiSelect.value = "";
     editingPdiId = null;
@@ -170,7 +165,6 @@ centroSelect.addEventListener("change", ()=>{
     const idCentro = centroSelect.value;
 
     // Se limpian los inputs al cambiar de Centro
-    nombreInput.value = "";
     contenidoInput.value = "";
     editingPdiId = null;
     pdiSelect.value = "";
@@ -179,12 +173,10 @@ centroSelect.addEventListener("change", ()=>{
         cargarPDIs(idCentro);
         // Muestra los inputs al seleccionar el Centro
         pdiSelect.style.display = 'block'; 
-        nombreInput.style.display = 'none'; // siempre oculto
         contenidoInput.style.display = 'block';
     }else{
         // Reseteo visual
         pdiSelect.style.display = 'block';
-        nombreInput.style.display = 'none';
         contenidoInput.style.display = 'none';
     }
 });
