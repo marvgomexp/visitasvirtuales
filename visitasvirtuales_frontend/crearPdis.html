@@ -9,7 +9,7 @@
 <body class="crear-pdis">
         <div id="form-container">
         <form id="formulario">
-         <h2>Crear o o modificar puntos de interés</h2>
+         <h2>Crear o modificar puntos de interés</h2>
         <div class="user-type">
         <button id="btnCrear" data-rol="ROLE_ADMINISTRADOR" type="button">Crear PDI</button>
         <button id="btnModificar" type="button" data-rol="ROLE_ADMINISTRADOR, ROLE_PROFESOR" class="activo">Modificar PDI</button>
@@ -21,17 +21,17 @@
             <option value="">-- Selecciona el centro --</option>
         </select>
         </div>
-
         <label id="labelPDI" for="pdiSelect">Nombre del PDI</label>
-         <!-- Select para modificar -->
+
+        <!-- Select para modificar -->
         <div class="input-container">
-        <select id="pdiSelect">
+        <select id="pdiSelect" style="display: block;">
             <option value="">-- Selecciona el PDI --</option>
         </select>
         </div>
 
          <!-- Input para crear -->
-        <div class="input-container">
+        <div class="input-container"><input type="text" id="nombrePDI" style="display: none;">
         <label for="contenidoJson">Contenido JSON:</label>
         <textarea id="contenidoJson" placeholder='Introduce los datos'></textarea>
         </div>
