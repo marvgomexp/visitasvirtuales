@@ -1,11 +1,11 @@
 package com.ies.tour.visitasvirtuales_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import java.util.Set;
-import jakarta.persistence.FetchType;
 
 @Entity
 @Table(name = "Centros")
@@ -31,9 +31,13 @@ public class Centros {
     @Column(name = "direccion", nullable = false, unique = true, length = 150)
     private String direccion;
 
-    @OneToMany(mappedBy = "centro", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<VisitaVirtual> visitas;
+    /*
+     * @OneToMany(mappedBy = "centro", cascade = CascadeType.ALL, orphanRemoval =
+     * true)
+     * private Set<VisitaVirtual> visitas;
+     */
 
-    @OneToMany(mappedBy = "centro", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "centro", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<PuntoDeInteres> puntoDeInteres;
 }
