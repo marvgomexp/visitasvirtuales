@@ -4,6 +4,9 @@ import com.ies.tour.visitasvirtuales_backend.dto.PuntoDeInteresDTO;
 import com.ies.tour.visitasvirtuales_backend.exception.ResourceNotFoundException;
 import com.ies.tour.visitasvirtuales_backend.model.PuntoDeInteres;
 import com.ies.tour.visitasvirtuales_backend.service.PuntoDeInteresService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
